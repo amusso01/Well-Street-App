@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+    <head>
+    {% block head %}
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% endblock %}
+        <title>{{ title }}</title>
+    </head>
+    <body>
+        <header>
+            {% block header %}
+
+            {% endblock %}
+            <nav>
+            {% block nav %}
+
+            {% endblock %}
+
+            </nav>
+        </header>
+        <main>
+        {% block content %}
+
+        {% endblock %}
+        </main>
+        <footer>
+        {% block footer %}
+
+        {% endblock %}
+        </footer>
+    </body>
+</html>
+

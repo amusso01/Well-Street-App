@@ -1,7 +1,7 @@
 <?php
 /**
  * Class to catch the uri request in the index.php
- * Create an instance that contains the uri parameter
+ * Create an instance contains the uri parameter  eg. index.php/landing  the class capture the landing.php parameter
  */
 
 
@@ -22,22 +22,23 @@ class uri
     /**--------Setter-------*/
 
     protected function extractUri(){
+
         if ($this->uri==$this->fileRoot){
-            $this->uri='home.php';
+            $file='home.html.twig';
         }else{
-            $this->uri=str_replace($this->fileRoot,'',$this->uri).'.php';
+            $file=htmlentities(str_replace($this->fileRoot,'',$this->uri).'.html.twig');
         }
+        return $file;
     }
 
-
     /**--------Getter----------*/
+
     /**
-     * @return current uri
+     * @return current uri parameter
      */
     public function getUri()
     {
-        $this->extractUri();
-        return $this->uri;
+        return $this->extractUri();
     }
 
 }

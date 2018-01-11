@@ -1,10 +1,17 @@
 <?php
 
+
+//all the setted paths are relative to the public_html folder
+
 // Set a document root URL. May be useful depending how URLs are served.
-$FILE_ROOT = '/wellstreet/public/';
+$FILE_ROOT = '/wellstreet/public_html/';//todo set to the web site path
 
 // Set the media URL (where the media files will be...css, storedImages, js etc)
 $MEDIA_URL = 'media/';
+
+
+//Set the template path
+$TEMPLATE_PATH='templates/';
 
 
 //path of file
