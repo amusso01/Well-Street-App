@@ -26,7 +26,7 @@ class uri
         if ($this->uri==$this->fileRoot){
             $file='home.html.twig';
         }else{
-            $file=htmlentities(str_replace($this->fileRoot,'',$this->uri).'.html.twig');
+            $file=htmlentities(str_replace($this->fileRoot,'',$this->uri));
         }
         return $file;
     }

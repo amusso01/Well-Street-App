@@ -17,14 +17,20 @@ $TEMPLATE_PATH='templates/';
 //path of file
 $self = htmlentities($_SERVER['PHP_SELF']);
 
+//basic array
+
 
 //general setting
 date_default_timezone_set('Europe/London');
-$config['lang']='en';
+
 
 
 // database settings
-$config['db_user'] = '';
+$config['db_user'] = 'root';
 $config['db_pass'] = '';
-$config['db_host'] = '';
-$config['db_name'] = '';
+$config['db_host'] = 'localhost';
+$config['db_name'] = 'wellstreetapp';
+
+
+//sql statment to use
+$sqlUser='SELECT username';

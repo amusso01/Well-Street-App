@@ -1,7 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: desktop
- * Date: 1/13/2018
- * Time: 4:54 PM
- */
+
+$mysqli= new mysqli(
+    $config['db_host'],
+    $config['db_user'],
+    $config['db_pass'],
+    $config['db_name']
+);
+
+//Check connection status
+if( $mysqli->connect_errno ){
+    exit( 'Connection Error: '.$mysqli->connect_error);
+}

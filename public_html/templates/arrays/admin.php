@@ -1,6 +1,6 @@
 <?php
 
 return array(
-    'title'=>'Homepage',
+    'title'=>'Admin Page',
     'FILE_ROOT'=>$FILE_ROOT
 );

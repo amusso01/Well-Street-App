@@ -1,3 +1,49 @@
-{% extends 'base.html.twig' %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+    <!--<![endif]-->
+    <link rel="stylesheet" href="media/css/mediaqueries.css">
+    <title>{{ title }}</title>
+</head>
+<body>
+<header>
+    <div class="pure-g">
+        <div class="pure-hidden-sm pure-u-lg-6-24 ">
+            <h1>logo</h1>
+        </div>
+        <div class="pure-u">
+            <h1>nav</h1>
+        </div>
+    </div>
+</header>
+<main>
+    <form class="pure-form pure-form-stacked" method="post" action="login">
+        <fieldset>
+            <legend>A Stacked Form</legend>
 
-{% set title = 'Homepage' %}
+            <input type="hidden" name="page" value="login">
+
+            <label for="username">Username</label>
+            <input id="username" placeholder="Username" name="username" required>
+            <span class="pure-form-message">This is a required field.</span>
+
+            <label for="password">Password</label>
+            <input id="password" type="password" placeholder="Password" name="pass">
+
+            <button type="submit" class="pure-button pure-button-primary">Sign in</button>
+        </fieldset>
+    </form>
+</main>
+
+</body>
+</html>
+
