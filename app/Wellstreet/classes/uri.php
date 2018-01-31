@@ -9,24 +9,20 @@ namespace Wellstreet\classes;
 
 class uri
 {
-    protected $uri;
-    protected $getParameter;
-    protected $fileRoot;
-    function __construct($fileRoot)
+    protected $getArray;
+    function __construct($getArray)
     {
-        $this->uri=$_SERVER['REQUEST_URI'];
-        $this->fileRoot=$fileRoot;
+        $this->getArray=$getArray;
     }
-
 
     /**--------Setter-------*/
 
-    protected function extractUri(){
-
-        if ($this->uri==$this->fileRoot){
-            $file='home.html.twig';
-        }else{
-            $file=htmlentities(str_replace($this->fileRoot,'',$this->uri));
+    protected function extractUri()
+    {
+        if (!isset($this->getArray['page'])) {
+            $file = 'home';
+        } else {
+            $file = $this->getArray['page'];
         }
         return $file;
     }

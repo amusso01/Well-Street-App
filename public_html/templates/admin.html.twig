@@ -1,1 +1,16 @@
-<h1>admin</h1>
+{% extends 'base.html.twig' %}
+
+{% block nav %}
+    <div class="pure-menu">
+    <a class="pure-menu-heading" href="#"><img class="pure-img-responsive" id="logoImg" src="{{ FILE_ROOT }}/media/images/logo.png" alt="well street logo"></a>
+
+    <ul class="pure-menu-list">
+        <li class="pure-menu-item"><a href="?page=rota" class="pure-menu-link">Rota</a></li>
+        <li class="pure-menu-item menu-item">
+            <a href="?page=employees" class="pure-menu-link">Employees</a>
+        </li>
+        <li class="pure-menu-item"><a href="?page=holiday" class="pure-menu-link">Holiday</a></li>
+    </ul>
+</div>
+{% endblock %}
+

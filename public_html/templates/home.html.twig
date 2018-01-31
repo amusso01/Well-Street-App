@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
     <!--<![endif]-->
     <link rel="stylesheet" href="media/css/mediaqueries.css">
+    <link rel="stylesheet" href="media/css/mystyle.css">
     <title>{{ title }}</title>
 </head>
 <body>
@@ -26,18 +27,20 @@
     </div>
 </header>
 <main>
-    <form class="pure-form pure-form-stacked" method="post" action="login">
+    <form class="pure-form pure-form-stacked" method="post" action="index.php?page=home">
         <fieldset>
             <legend>A Stacked Form</legend>
 
-            <input type="hidden" name="page" value="login">
+            <input type="hidden" name="page" value="home">
 
             <label for="username">Username</label>
-            <input id="username" placeholder="Username" name="username" required>
+            <input id="username" placeholder="Username" name="username" required value="{{ redisplayUser }}">
+            <span class="pure-form-message error">{{ userError }}</span>
             <span class="pure-form-message">This is a required field.</span>
 
             <label for="password">Password</label>
             <input id="password" type="password" placeholder="Password" name="pass">
+            <span class="pure-form-message error">{{ passError }}</span>
 
             <button type="submit" class="pure-button pure-button-primary">Sign in</button>
         </fieldset>
