@@ -48,10 +48,12 @@ class validation
                         $_SESSION = array();
                         $_SESSION['uName']=$uName;
                         $_SESSION['admin']='set';
+                        $this->mysqli->close();
                         header('location:?page=admin');
                     }else{
                         $_SESSION = array();
                         $_SESSION['uName']=$uName;
+                        $this->mysqli->close();
                         header('location:?page=user');
                     }
                 }else{
@@ -82,6 +84,7 @@ class validation
     }
 
     protected function addUser(){
+        $this->sanitizeEntry();
         $uname=$this->postArray['uname'];
         if($uname!=''){
             if(strlen($uname)<6 || strlen($uname)>45){
@@ -91,6 +94,12 @@ class validation
                 if($number<1){
                     $this->errorArray['unameError']='Username must contains at least 1 number';
                 }else{
+                    $uname=mysqli_real_escape_string($this->mysqli,$uname);
+                    $query="SELECT * FROM users WHERE username='$uName'";
+                    $result=mysqli_query($this->mysqli,$query);
+                    if($result->num_rows!==0){
+                        $this->errorArray['unameError']='Username already exist please choose a different one';
+                    }else{
                     $this->sessionArray['uname']=$uname;
                     $pass=$this->postArray['pass'];
                     if($pass!=''){
