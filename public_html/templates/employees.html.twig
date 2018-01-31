@@ -28,71 +28,20 @@
         <hr>
         <div class="pure-u-1">
             <h2>Add new employee</h2>
-             <form class="pure-form pure-form-aligned" method="post" action="?page=addemployee">
-                 <fieldset>
-                     <legend>Details</legend>
-                     <div class="pure-control-group">
-                         <label for="name">Name</label>
-                         <input id="name" type="text" name="name" >
-                     </div>
-                     <div class="pure-control-group">
-                         <label for="sname">Surname</label>
-                         <input id="sname" type="text" name="sname">
-                     </div>
-                     <div class="pure-control-group">
-                         <label for="gender">Gender</label>
-                         <input id="gender" type="radio" name="gender" value="M"><span>Male</span>
-                         <input id="gender" type="radio" name="gender" value="F"><span>Female</span>
-                     </div>
+            <form class="pure-form pure-form-aligned" method="post" action="?page=employees">
+                <fieldset>
+                    <legend>Details</legend>
                      <div class="pure-control-group">
                          <label for="uname">Username</label>
-                         <input id="uname" type="text" name="uname" >
+                         <input id="uname" type="text" name="uname" required value="{{ redisplayUser }}">
+                         <span>{{ unameError }}</span>
                      </div>
                      <div class="pure-control-group">
                          <label for="password">Password</label>
-                         <input id="password" type="password" name="pass" >
+                         <input id="password" type="password" name="pass" required>
+                         <span>{{ passError }}</span>
                      </div>
-                     <div class="pure-control-group">
-                         <label for="email">Email Address</label>
-                         <input id="email" type="email" name="email" >
-                     </div>
-                     <div class="pure-control-group">
-                         <label for="start">Starting date</label>
-                         <input id="start" type="date" name="sdate">
-                     </div>
-                     <div class="pure-control-group">
-                         <label for="nin">National Insurane Number</label>
-                         <input id="nin" type="text"  name="NIN">
-                     </div>
-                     <div class="pure-control-group">
-                         <label for="dob">Date of birthday</label>
-                         <input id="dob" type="date" name="dob" >
-                     </div>
-                     <div class="pure-control-group">
-                         <label for="address">Address</label>
-                         <input id="address" type="text" name="address" >
-                     </div>
-                     <div class="pure-control-group">
-                         <label for="pcode">Post-code</label>
-                         <input id="pcode" type="text" name="pcode" >
-                     </div>
-                     <div class="pure-control-group">
-                         <label for="phone">Phone number</label>
-                         <input id="phone" type="text" name="phone">
-                     </div>
-                     <div class="pure-control-group">
-                         <label for="payrate">Pay rate</label>
-                         <input id="payrate" type="text" name="payrate" >
-                     </div>
-                     <div class="pure-control-group">
-                         <label for="department">Department</label>
-                             <input id="department" type="radio" name="department" value="FOH"><span>FOH</span>
-                             <input id="department" type="radio" name="department" value="BOH"><span>BOH</span>
-                     </div>
-                     <div class="pure-control-group">
-                         <label for="position">Position</label>
-                         <input id="position" type="text" name="position" >
-                     </div>
+
                      <div class="pure-control-group">
                          <label for="admin" class="pure-checkbox"> Give admin access</label>
                          <input id="admin" type="checkbox" name="admim" value="1">

@@ -1,8 +1,8 @@
 <?php
 
 if(isset($_POST['page'])) {
-   $user=new Wellstreet\classes\login($_POST,$mysqli);
-   $user->valid();//validate the user
+   $user=new Wellstreet\classes\validation($_POST,$mysqli);
+   $user->login();//validate the user
    if($user->errorArray!==0){
        $error=include_once __DIR__.'/../templates/arrays/home.php';
        $toDispalay=array_merge($error,$user->errorArray);
