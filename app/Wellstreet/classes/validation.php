@@ -69,61 +69,114 @@ class validation
 
         }
 
-    protected function sanitizeEntry(){
+    public function sanitizeEntry(){
         foreach ($this->postArray as $key=>$value){
             if($value=='pass'){
                 continue;
-            }elseif(is_string($value)){
+            }else{
                 $value=trim($value);
                 $value=strtolower($value);
                 $this->postArray[$key]=mysqli_real_escape_string($this->mysqli,$value);
-            }else{
-                continue;//todo sanitize number think just a mysqli escape is going to be enough
             }
         }
     }
 
-    protected function addUser(){
+    protected function setUsername()
+    {
         $this->sanitizeEntry();
-        $uname=$this->postArray['uname'];
-        if($uname!=''){
-            if(strlen($uname)<6 || strlen($uname)>45){
-                $this->errorArray['unameError']='Maximum 45 minimum 6 characters for username';
-            }else{
-                $number=preg_match_all("/[0-9]/",$uname);
-                if($number<1){
-                    $this->errorArray['unameError']='Username must contains at least 1 number';
-                }else{
-                    $uname=mysqli_real_escape_string($this->mysqli,$uname);
-                    $query="SELECT * FROM users WHERE username='$uName'";
-                    $result=mysqli_query($this->mysqli,$query);
-                    if($result->num_rows!==0){
-                        $this->errorArray['unameError']='Username already exist please choose a different one';
-                    }else{
-                    $this->sessionArray['uname']=$uname;
-                    $pass=$this->postArray['pass'];
-                    if($pass!=''){
-                        if (strlen($pass)<8||strlen($pass)>15){
-                            $this->errorArray['redisplayUser']=$uname;
-                            $this->errorArray['passError']='Maximum 15 minimum 8 characters for password';
-                        }else{
-                            $number=preg_match_all("/[0-9]/",$pass);
-                            if ($number<2){
-                                $this->errorArray['redisplayUser']=$uname;
-                                $this->errorArray['passError']='Password must contains at least 2 numbers';
-                            }else{
-                                $this->sessionArray['pass']=$pass;
-                                unset($this->errorArray);
+        $uname = $this->postArray['uname'];
+        if ($uname != '') {
+            if (strlen($uname) < 6 || strlen($uname) > 45) {
+                $this->errorArray['unameError'] = 'Maximum 45 minimum 6 characters for username';
+            } else {
+                $number = preg_match_all("/[0-9]/", $uname);
+                if ($number < 1) {
+                    $this->errorArray['unameError'] = 'Username must contains at least 1 number';
+                } else {
+                    $query = "SELECT * FROM users WHERE username='$uname'";
+                    $result = mysqli_query($this->mysqli, $query);
+                    if ($result->num_rows !== 0) {
+                        $this->errorArray['unameError'] = 'Username already exist please choose a different one';
+                    } else {
+                        $this->sessionArray['uname'] = $uname;
+                        $pass = $this->postArray['pass'];
+                        if ($pass != '') {
+                            if (strlen($pass) < 8 || strlen($pass) > 15) {
+                                $this->errorArray['redisplayUser'] = $uname;
+                                $this->errorArray['passError'] = 'Maximum 15 minimum 8 characters for password';
+                            } else {
+                                $number = preg_match_all("/[0-9]/", $pass);
+                                if ($number < 2) {
+                                    $this->errorArray['redisplayUser'] = $uname;
+                                    $this->errorArray['passError'] = 'Password must contains at least 2 numbers';
+                                } else {
+                                    $this->sessionArray['pass'] = $pass;
+                                    unset($this->errorArray);
+                                }
                             }
                         }
-                    }
 
+                    }
                 }
             }
         }
     }
+    protected function validateName($name){
+        if($name==''){
+            $this->errorArray['nameError']='This field cannot be empty';
+            return false;
+        }else{
+            if (preg_match("/^[a-zA-Z'. -]+$/", $name)) {
+                return true;
+            }else{
+                $this->errorArray['nameError']='Check this field character not allowed';
+                return false;
+            }
+        }
+    }
+    protected function validateChoices($choice){
+        if($choice==''||isset($choice)){
+            $this->errorArray['choiceError']='Must choose one';
+            return false;
+        }else{
+            return true;
+        }
+    }
+    protected function validateEmail($email){
+        return filter_var($email, FILTER_VALIDATE_EMAIL);
+    }
+
+    public function setUser(){
+        if($this->validateName($this->postArray['name'])) {
+            $this->errorArray['redisplayName'] = htmlentities($this->postArray['name']);
+            $this->valid = true;
+            if ($this->validateName($this->postArray['sname'])){
+                $this->errorArray['redisplaySName'] = htmlentities($this->postArray['sname']);
+                if($this->validateChoices($this->postArray['gender'])){
+                    $this->errorArray['gender']=$this->postArray['gender'];
+                    if($this->validateChoices($this->postArray['department'])){
+                        $this->errorArray['department']=$this->postArray['department'];
+                        if($email=$this->validateEmail($this->postArray['email'])){
+                            $this->errorArray['redisplayEmail']=$email;
+                            //todo date and time check
+                        }else{
+                            $this->errorArray['emailError']='Email is not a valid';
+                            $this->valid =false;
+                        }
+                    }else{
+                        $this->valid =false;
+                    }
+                }else{
+                    $this->valid =false;
+                }
+            }else{
+                $this->valid =false;
+            }
+        }
+    }
+
     public function validateuser(){
-        $this->addUser();
+        $this->setUsername();
     }
 
     public function login(){

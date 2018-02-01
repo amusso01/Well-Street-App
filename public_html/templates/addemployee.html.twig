@@ -18,7 +18,10 @@
 {% block content %}
     <div class="pure-g">
         <div class="pure-u-1">
-            <h2>Add new employee</h2>
+            <h3>Add details for new employee</h3>
+            <p>Username: {{ newUName }}</p>
+        </div>
+        <div class="pure-u-1">
             <form class="pure-form pure-form-aligned" method="post" action="?page=addemployee">
                 <fieldset>
                     <legend>Details</legend>
@@ -32,8 +35,16 @@
                     </div>
                     <div class="pure-control-group">
                         <label for="gender">Gender</label>
-                        <input id="gender" type="radio" name="gender" value="M"><span>Male</span>
-                        <input id="gender" type="radio" name="gender" value="F"><span>Female</span>
+                        {% if gender==m %}
+                            <input id="gender" type="radio" name="gender" value="m" checked="checked"><span>Male</span>
+                            <input id="gender" type="radio" name="gender" value="f"><span>Female</span>
+                        {% elseif gender ==f %}
+                            <input id="gender" type="radio" name="gender" value="m"><span>Male</span>
+                            <input id="gender" type="radio" name="gender" value="f" checked="checked"><span>Female</span>
+                        {% else %}
+                            <input id="gender" type="radio" name="gender" value="m"><span>Male</span>
+                            <input id="gender" type="radio" name="gender" value="f"><span>Female</span>
+                        {% endif %}
                     </div>
                     <div class="pure-control-group">
                         <label for="email">Email Address</label>
@@ -61,7 +72,7 @@
                     </div>
                     <div class="pure-control-group">
                         <label for="phone">Phone number</label>
-                        <input id="phone" type="text" name="phone">
+                        <input id="phone" type="tel" name="phone">
                     </div>
                     <div class="pure-control-group">
                         <label for="payrate">Pay rate</label>
@@ -69,12 +80,19 @@
                     </div>
                     <div class="pure-control-group">
                         <label for="department">Department</label>
-                        <input id="department" type="radio" name="department" value="FOH"><span>FOH</span>
-                        <input id="department" type="radio" name="department" value="BOH"><span>BOH</span>
+                        <input id="department" type="radio" name="department" value="foh"><span>FOH</span>
+                        <input id="department" type="radio" name="department" value="boh"><span>BOH</span>
                     </div>
                     <div class="pure-control-group">
                         <label for="position">Position</label>
                         <input id="position" type="text" name="position" >
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="holiday">Holiday allowed</label>
+                        <input id="holiday" type="number" name="position" >
+                    </div>
+                    <div class="pure-controls">
+                        <button type="submit" class="pure-button pure-button-primary">Add details</button>
                     </div>
                 </fieldset>
             </form>
