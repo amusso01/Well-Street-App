@@ -9,14 +9,16 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])){
     $validate->sanitizeEntry();
     $validate->setUser();
     if($validate->valid){
-        echo 'valid';
-        var_dump($validate);
+        $newUser=$validate->buildUser();
+        var_dump($newUser);
     }else{
-        var_dump($validate);
-        echo 'invalid';
+        $variables=include_once __DIR__.'/../templates/arrays/addemployee.php';
+        $variables=array_merge($variables,$validate->errorArray);
+        echo $twig->render($template->getTemplate(),$variables);
     }
 }
 else{
+
     $variables=include_once __DIR__.'/../templates/arrays/addemployee.php';
     $variables=array_merge($variables,$_SESSION);
     echo $twig->render($template->getTemplate(),$variables);

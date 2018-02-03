@@ -11,5 +11,9 @@ namespace Wellstreet\classes;
 
 class user
 {
-
+protected$user;
+function __construct($user)
+{
+    $this->user=$user;
+}
 }

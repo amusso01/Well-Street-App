@@ -8,7 +8,8 @@
 
 namespace Wellstreet\classes;
 
-
+use Wellstreet\classes\apiCurl;
+use Wellstreet\classes\user;
 
 class validation
 {
@@ -135,7 +136,7 @@ class validation
         }
     }
     protected function validateChoices($choice){
-        if($choice==''||isset($choice)){
+        if($choice==''|| !isset($choice)){
             $this->errorArray['choiceError']='Must choose one';
             return false;
         }else{
@@ -143,7 +144,71 @@ class validation
         }
     }
     protected function validateEmail($email){
+        if ($email==''){
+            $this->errorArray['emailError']='This field cannot be empty';
+            return false;
+        }
         return filter_var($email, FILTER_VALIDATE_EMAIL);
+    }
+    protected function validateDate($date){
+        if($date!==''){
+            $date= explode('-',$date);
+            foreach ($date as $key=>$value){
+                $value=(int)$value;
+                $date[$key]=$value;
+            }
+            if (checkdate($date['1'],$date['2'],$date['0'])){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
+    protected function validateNin($nin){
+        if ($nin==''){
+            $this->errorArray['ninError']='This field cannot be empty';
+            return false;
+        }elseif (preg_match("/^([a-zA-Z]){2}( )?([0-9]){2}( )?([0-9]){2}( )?([0-9]){2}( )?([a-zA-Z]){1}?$/",$nin)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    //Validate the post code using api call to getaddtess() service
+    public function validatePCode($pCode){
+        $pCode = preg_replace('/\s+/', '', $pCode);
+        $response=new apiCurl('eK7S7hMgwECk4puypAK_6Q12122','https://api.getAddress.io/find/',$pCode);
+        return $response->getResult();
+    }
+
+    protected function validatePhone($phone){
+        if($phone==''){
+            $this->errorArray['phoenError']='Phone number must be supplied';
+            return false;
+        }elseif(preg_match("/^(?:0|\+?44)(?:\d\s?){9,10}$/",$phone)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    protected function validatePayRate($payRate){
+        if(preg_match("/[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)/",$payRate)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    protected function validateHoliday($holiday){
+        if($holiday==''){
+            $this->errorArray['holidayError']='Select holiday allowed in one year';
+            return false;
+        }elseif (preg_match("/[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)/",$holiday))
+
+            return true;
+        else{
+            $this->errorArray['holidayError']='Must be a number';
+            return false;
+        }
     }
 
     public function setUser(){
@@ -158,7 +223,48 @@ class validation
                         $this->errorArray['department']=$this->postArray['department'];
                         if($email=$this->validateEmail($this->postArray['email'])){
                             $this->errorArray['redisplayEmail']=$email;
-                            //todo date and time check
+                            if($this->validateDate($this->postArray['sdate'])){
+                                $this->errorArray['redisplaySDate']=$this->postArray['sdate'];
+                                if($this->validateNin($this->postArray['nin'])){
+                                    $this->errorArray['redisplayNin']=$this->postArray['nin'];
+                                    if($this->validateDate($this->postArray['dob'])){
+                                        $this->errorArray['redisplayDob']=$this->postArray['dob'];
+                                        if(is_object($this->validatePCode($this->postArray['pcode']))){
+                                            $pCode = preg_replace('/\s+/', '', $this->postArray['pcode']);
+                                            $this->errorArray['redisplayPCode']=$pCode;
+                                            if($this->validatePhone($this->postArray['phone'])){
+                                                $this->errorArray['redisplayPhone']=$this->postArray['phone'];
+                                                if($this->validatePayRate($this->postArray['payrate'])){
+                                                    $this->errorArray['redisplayPay']=$this->postArray['payrate'];
+                                                    if($this->validateHoliday($this->postArray['holiday'])){
+                                                        $this->errorArray['redisplayHoliday']=$this->postArray['holiday'];
+                                                    }else{
+                                                        $this->valid=false;
+                                                    }
+                                                }else{
+                                                    $this->errorArray['payError']='Pay rate must be a number';
+                                                    $this->valid=false;
+                                                }
+                                            }else{
+                                                $this->errorArray['phoneError']='Phone number is incorrect';
+                                                $this->valid=false;
+                                            }
+                                        }else{
+                                            $this->errorArray['pCodeError']=$this->validatePCode($this->postArray['pcode']);
+                                            $this->valid=false;
+                                        }
+                                    }else{
+                                        $this->errorArray['dobError']='Date format is not valid please enter YYYY-mm-dd';
+                                        $this->valid =false;
+                                    }
+                                }else{
+                                    $this->errorArray['ninError']='The NIN is not valid';
+                                    $this->valid =false;
+                                }
+                            }else{
+                                $this->errorArray['sdateError']='Date format is not valid please enter YYYY-mm-dd';
+                                $this->valid =false;
+                            }
                         }else{
                             $this->errorArray['emailError']='Email is not a valid';
                             $this->valid =false;
@@ -173,6 +279,25 @@ class validation
                 $this->valid =false;
             }
         }
+    }
+    public function buildUser(){
+        $this->sessionArray=array(
+            'name'=>$this->errorArray['redisplayName'],
+            'surname'=>$this->errorArray['redisplaySName'],
+            'gender'=>$this->errorArray['gender'],
+            'email'=>$this->errorArray['redisplayEmail'],
+            'starting_date'=>$this->errorArray['redisplaySDate'],
+            'nin'=>$this->errorArray['redisplayNin'],
+            'date_of_birthday'=>$this->errorArray['redisplayDob'],
+            'post_code'=>$this->errorArray['redisplayPCode'],
+            'address'=>$this->postArray['address'],
+            'phone_number'=>$this->errorArray['redisplayPhone'],
+            'payrate'=>$this->errorArray['redisplayPay'],
+            'department'=>$this->errorArray['department'],
+            'position'=>$this->postArray['position'],
+            'holiday_allowance'=>$this->errorArray['redisplayHoliday']
+        );
+        return new user($this->sessionArray);
     }
 
     public function validateuser(){
