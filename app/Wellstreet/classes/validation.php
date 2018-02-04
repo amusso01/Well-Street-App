@@ -51,11 +51,13 @@ class validation
                         $_SESSION['admin']='set';
                         $this->mysqli->close();
                         header('location:?page=admin');
+                        die();
                     }else{
                         $_SESSION = array();
                         $_SESSION['uName']=$uName;
                         $this->mysqli->close();
                         header('location:?page=user');
+                        die();
                     }
                 }else{
                     $this->errorArray['passError']='Password is incorrect';
@@ -295,9 +297,13 @@ class validation
             'payrate'=>$this->errorArray['redisplayPay'],
             'department'=>$this->errorArray['department'],
             'position'=>$this->postArray['position'],
-            'holiday_allowance'=>$this->errorArray['redisplayHoliday']
+            'holiday_allowance'=>$this->errorArray['redisplayHoliday'],
         );
-        return new user($this->sessionArray);
+        $credentials=array(
+            'username'=>$_SESSION['newUName'],
+            'password'=>$_SESSION['newPass']
+        );
+        return new user($this->sessionArray,$credentials,$this->mysqli);
     }
 
     public function validateuser(){

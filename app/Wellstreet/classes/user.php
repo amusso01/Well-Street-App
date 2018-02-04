@@ -11,9 +11,16 @@ namespace Wellstreet\classes;
 
 class user
 {
-protected$user;
-function __construct($user)
+public $userDetails;
+protected $userCredentials;
+protected $db;
+function __construct($userDetails,$userCredentials,$db)
 {
-    $this->user=$user;
+    $this->userDetails=$userDetails;
+    $this->userCredentials=$userCredentials;
+    $this->db=$db;
 }
+
+
+
 }
