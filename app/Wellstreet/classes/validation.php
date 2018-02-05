@@ -59,9 +59,11 @@ class validation
                         header('location:?page=user');
                         die();
                     }
-                }else{
+                }elseif($uName==$user['username']){
                     $this->errorArray['passError']='Password is incorrect';
                     $this->errorArray['redisplayUser']=htmlentities($uName);
+                }else{
+                    $this->errorArray['passError']='Username is incorrect';
                 }
             }
         }else{
@@ -299,11 +301,19 @@ class validation
             'position'=>$this->postArray['position'],
             'holiday_allowance'=>$this->errorArray['redisplayHoliday'],
         );
-        $credentials=array(
-            'username'=>$_SESSION['newUName'],
-            'password'=>$_SESSION['newPass']
-        );
-        return new user($this->sessionArray,$credentials,$this->mysqli);
+        if (isset($_SESSION['adminaccess'])){
+            $credentials=array(
+                'username'=>$_SESSION['newUName'],
+                'password'=>$_SESSION['newPass'],
+                'adminaccess'=>$_SESSION['adminaccess']
+            );
+        }else{
+            $credentials=array(
+                'username'=>$_SESSION['newUName'],
+                'password'=>$_SESSION['newPass']
+            );
+        }
+        return new user($this->sessionArray,$credentials);
     }
 
     public function validateuser(){

@@ -6,7 +6,5 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])){
     logOut();
     header( 'refresh:4;url=index.php' );
 }else{
-
     echo $twig->render($template->getTemplate(),require __DIR__.'/../templates/arrays/'.$template->getArray());
-
 }

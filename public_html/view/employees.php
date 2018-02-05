@@ -12,8 +12,14 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])){
         $arrayToDisplay=array_merge($error,$user->errorArray);
         echo $twig->render($template->getTemplate(),$arrayToDisplay);
     }else{
-        $_SESSION['newUName']=$user->sessionArray['uname'];
-        $_SESSION['newPass']=$user->sessionArray['pass'];
+        if (isset($_POST['adminPriviledge'])){
+            $_SESSION['newUName']=$user->sessionArray['uname'];
+            $_SESSION['newPass']=$user->sessionArray['pass'];
+            $_SESSION['adminaccess']=$_POST['adminPriviledge'];
+        }else{
+            $_SESSION['newUName']=$user->sessionArray['uname'];
+            $_SESSION['newPass']=$user->sessionArray['pass'];
+        }
         header('location:?page=addemployee');
     }
 

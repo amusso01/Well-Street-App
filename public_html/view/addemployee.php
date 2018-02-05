@@ -9,11 +9,10 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])){
     $validate->sanitizeEntry();
     $validate->setUser();
     if($validate->valid){
-        $variables=include_once __DIR__.'/../templates/arrays/confirmdetails.php';
         $newUser=$validate->buildUser();
-        $user=get_object_vars($newUser);
-
-       echo $twig->render('confirmdetails.html.twig',$variables);
+        $_SESSION['userObj']=serialize($newUser);
+        header('location:?page=confirmdetails');
+        die();
     }else{
         $variables=include_once __DIR__.'/../templates/arrays/addemployee.php';
         $variables=array_merge($variables,$validate->errorArray);
@@ -21,7 +20,6 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])){
     }
 }
 else{
-
     $variables=include_once __DIR__.'/../templates/arrays/addemployee.php';
     $variables=array_merge($variables,$_SESSION);
     echo $twig->render($template->getTemplate(),$variables);

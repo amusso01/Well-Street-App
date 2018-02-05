@@ -9,3 +9,4 @@ $template=new Wellstreet\classes\fileList( $uri->getUri(), setAllFile(__DIR__.'/
 
 include $template->displayView();
 
+?>
