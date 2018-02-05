@@ -315,7 +315,6 @@ class validation
         }
         return new user($this->sessionArray,$credentials);
     }
-
     public function validateuser(){
         $this->setUsername();
     }
