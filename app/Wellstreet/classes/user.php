@@ -31,6 +31,7 @@ public function dbEscape($detail){
             $this->userCredentials['password']=$this->passHash($this->userCredentials['password']);
         }else{
             $detail[$key]=mysqli_real_escape_string($this->db,$value);
+
         }
     }
 }
