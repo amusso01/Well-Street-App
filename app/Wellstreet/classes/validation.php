@@ -48,13 +48,14 @@ class validation
                     if ($user['adminaccess']==1){
                         $_SESSION = array();
                         $_SESSION['uName']=$uName;
-                        $_SESSION['admin']='set';
+                        $_SESSION['admin']='admin';
                         $this->mysqli->close();
                         header('location:?page=admin');
                         die();
                     }else{
                         $_SESSION = array();
                         $_SESSION['uName']=$uName;
+                        $_SESSION['user']='user';
                         $this->mysqli->close();
                         header('location:?page=user');
                         die();

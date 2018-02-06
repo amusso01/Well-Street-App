@@ -2,5 +2,7 @@
 return array(
     'title'=>'Admin Page',
     'FILE_ROOT'=>$FILE_ROOT,
-    'user'=>htmlentities($_SESSION['uName'])
+    'self'=>$self,
+    'user'=>htmlentities($_SESSION['uName']),
+    'homeLink'=>$_SESSION['admin']
 );
