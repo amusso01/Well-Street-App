@@ -32,5 +32,5 @@ $config['db_host'] = 'localhost';
 $config['db_name'] = 'wellstreetapp';
 
 
-//sql statment to use
-$sqlUser='SELECT username';
+//mail messages
+$confirmNewUser='A new employee has been created \r\n ';

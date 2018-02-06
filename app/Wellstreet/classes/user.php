@@ -34,6 +34,8 @@ public function dbEscape($detail){
         }
     }
 }
+
+
 protected function passHash($pass){
     return password_hash($pass,PASSWORD_DEFAULT);
 }
