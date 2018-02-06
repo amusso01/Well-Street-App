@@ -10,3 +10,16 @@ $twig = new Twig_Environment($loader, array(
     'debug'=>'true'//todo set to false in production
 ));
 
+/*--------SWIFTMAILER--------*/
+// Create the Transport
+$transport = (new Swift_SmtpTransport('mail.wellstreetapp.co.uk', 25))
+    ->setUsername('jens@wellstreetapp.co.uk')
+    ->setPassword('$Password01')
+;
+// Create the Mailer using your created Transport
+$mailer = new Swift_Mailer($transport);
+
+//mail messages
+$newUsersMessage = (new Swift_Message('New Users for well-street-app'))
+    ->setFrom(['admin@wellstreetapp.co.uk' => 'Admin'])
+;

@@ -32,5 +32,3 @@ $config['db_host'] = 'localhost';
 $config['db_name'] = 'wellstreetapp';
 
 
-//mail messages
-$confirmNewUser='A new employee has been created \r\n ';

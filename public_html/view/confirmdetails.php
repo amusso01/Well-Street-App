@@ -17,11 +17,14 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])){
     $userDetails=unserialize($_SESSION['userObj']);
     $user=new Wellstreet\classes\user($userDetails->userDetails,$userDetails->userCredentials);
     $user->setDb($mysqli);
+    $emailArray=array('username'=>$user->userCredentials['username'],'password'=>$user->userCredentials['password'],'name'=>$user->userDetails['name']);
     $user->dbEscape($user->userCredentials);
     $user->dbEscape($user->userDetails);
     $user->pushToDb();
-
-
+    $body=$twig->render('emailTemplate.html.twig',$emailArray);
+    $newUsersMessage->setTo($user->userDetails['email'],$user->userDetails['name']);
+    $newUsersMessage->setBody($body,'text/html');
+    $mailer->send($newUsersMessage);
     echo $twig->render($template->getTemplate(),$variables);
 }else{
     echo'something went wrong';//todo create a template for this
