@@ -22,7 +22,7 @@ class apiCurl
         $this->parameter = $parameter;
     }
 
-    public function getResult()
+    public function addressResult()
     {
         $my_curl = curl_init();
         curl_setopt($my_curl, CURLOPT_URL, $this->url . '' . $this->parameter);

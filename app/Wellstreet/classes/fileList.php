@@ -37,7 +37,7 @@ class fileList
         return $newArray;
     }
 
-    // return the name of the view required
+    // return the name of the model required
     protected function getView(){
         $controller=$this->getPage.'.php';
         foreach ($this->viewList as $value){
@@ -76,11 +76,11 @@ class fileList
         foreach ($this->viewList as $view){
             switch ($finalView){
                 case $view:
-                    return __DIR__ . '/../../../public_html/view/' .$finalView;
+                    return __DIR__ . '/../../../public_html/model/' .$finalView;
                     break;
             }
         }
-        return __DIR__ . '/../../../public_html/view/404.php';
+        return __DIR__ . '/../../../public_html/model/404.php';
     }
 
 

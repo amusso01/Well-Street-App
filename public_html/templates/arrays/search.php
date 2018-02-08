@@ -1,6 +1,6 @@
 <?php
 return array(
-    'title'=>'Employees',
+    'title'=>'Search page',
     'FILE_ROOT'=>$FILE_ROOT,
     'self'=>$self,
     'user'=>htmlentities($_SESSION['uName']),

@@ -183,7 +183,7 @@ class validation
     public function validatePCode($pCode){
         $pCode = preg_replace('/\s+/', '', $pCode);
         $response=new apiCurl('eK7S7hMgwECk4puypAK_6Q12122','https://api.getAddress.io/find/',$pCode);
-        return $response->getResult();
+        return $response->addressResult();
     }
 
     protected function validatePhone($phone){

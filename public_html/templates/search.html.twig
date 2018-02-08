@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block nav %}
+    <div class="pure-menu">
+        <a class="pure-menu-heading" href="{{ self }}?page={{ homeLink }}"><img class="pure-img-responsive" id="logoImg" src="{{ FILE_ROOT }}/media/images/logo.png" alt="well street logo"></a>
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item"><a href="?page=rota" class="pure-menu-link">Rota</a></li>
+            <li class="pure-menu-item pure-menu-selected">
+                <a href="?page=employees" class="pure-menu-link">Employees</a>
+            </li>
+            <li class="pure-menu-item"><a href="?page=holiday" class="pure-menu-link">Holiday</a></li>
+        </ul>
+    </div>
+{% endblock %}
+{% block header %}
+    <h1>Employees</h1>
+{% endblock %}
+{% block content %}
+    <div class="pure-g">
+        <div class="pure-u-1">
+            <h2>Search</h2>
+            <form class="pure-form" method='post' action="?page=search">
+                <span>Surname</span>
+                <input type="text" id="surname"  name="search" class="pure-input-rounded">
+                <button type="submit" class="pure-button">Search</button>
+            </form>
+        </div>
+        <hr>
+        <div class="pure-u-1">
+            {% if users == 0%}
+                <p>No employee with this surname</p>
+            {% else%}
+            <table class="pure-table pure-table-horizontal">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Edit</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for employee in users %}
+                <tr>
+                    <td>{{ employee.id_employee}}</td>
+                    <td>{{ employee.name }}a</td>
+                    <td>{{ employee.surname }}</td>
+                    <td>{{ employee.email }}</td>
+                    <td>{{ employee.phone_number }}</td>
+                    <td><a href="{{ self }}?page=edit&id={{ employee.id_employee }}">Edit</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
