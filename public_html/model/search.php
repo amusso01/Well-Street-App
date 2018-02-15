@@ -27,5 +27,7 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])){
     }
 
 }else{
+    $variables=include_once __DIR__.'/../templates/arrays/search.php';
+    echo $twig->render($template->getTemplate(),$variables);
     //create page in case post['search'] not set
 }
