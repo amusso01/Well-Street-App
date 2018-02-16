@@ -1,14 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block nav %}
-    <div class="pure-menu">
+    <div class="pure-menu custom-restricted-width">
         <a class="pure-menu-heading" href="{{ self }}?page={{ homeLink }}"><img class="pure-img-responsive" id="logoImg" src="{{ FILE_ROOT }}/media/images/logo.png" alt="well street logo"></a>
         <ul class="pure-menu-list">
-            <li class="pure-menu-item"><a href="?page=adminrota" class="pure-menu-link">Rota</a></li>
             <li class="pure-menu-item pure-menu-selected">
-                <a href="?page=employees" class="pure-menu-link">Employees</a>
+                <a href="?page=employees" class="pure-menu-link ">Employees</a>
             </li>
             <li class="pure-menu-item"><a href="?page=holiday" class="pure-menu-link">Holiday</a></li>
+            <li class="pure-menu-item pure-menu-has-children">
+                <a href="#" class="pure-menu-link">Rota</a>
+                <ul class="submenu">
+                    <li class="pure-menu-item"><a href="?page=adminrotafoh" class="pure-menu-link">FOH rota</a></li>
+                    <li class="pure-menu-item"><a href="?page=adminrotaboh" class="pure-menu-link">BOH rota</a></li>
+                    <li class="pure-menu-item"><a href="?page=adminrotanewshift" class="pure-menu-link">Create new shift</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
 {% endblock %}

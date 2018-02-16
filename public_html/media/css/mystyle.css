@@ -6,3 +6,18 @@
     color:red;
     font-size: 0.9em;
 }
+.submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: #1f8dd6;
+}
+.pure-menu-list li:hover .submenu {
+    display: block;
+    max-height: 200px;
+}
+.submenu {
+    overflow: hidden;
+    max-height: 0;
+    -webkit-transition: all 0.5s ease-out;
+}
