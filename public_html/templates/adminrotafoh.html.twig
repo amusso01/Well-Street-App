@@ -21,8 +21,14 @@
 {% endblock %}
 {% block content %}
     <div class="pure-g">
-        <div class="pure-u-1">
+        <div class="pure-u-1-2">
             <h3>Enter the rota for the {{ department }} department</h3>
+        </div>
+        <div class="pure-u-1-2">
+            {% if weekNumber > 1 %}
+                <a id="nextWeek" href="?page={{ page }}&week={{ weekNumber }}&direction=prev">Prev week</a>
+            {% endif %}
+            <a id="nextWeek" href="?page={{ page }}&week={{ weekNumber }}&direction=next">Next week</a>
         </div>
         <div class="pure-u-1">
             <table class="pure-table">
@@ -57,4 +63,7 @@
             </table>
         </div>
     </div>
+{% endblock %}
+{% block script %}
+
 {% endblock %}

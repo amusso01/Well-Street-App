@@ -5,5 +5,6 @@ return array(
     'self'=>$self,
     'user'=>htmlentities($_SESSION['uName']),
     'department'=>'Back of house',
+    'page'=>'adminrotaboh',
     'homeLink'=>$_SESSION['admin']
 );

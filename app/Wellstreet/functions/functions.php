@@ -24,18 +24,14 @@ function logOut(){
 //default = 0 return current week
 function getWeek($accumulator=1){
     $lapse=7*24*60*60;
-//    if($accumulator>0){
-//        for($accumulator;$accumulator>0;$accumulator-1){
-//            $lapse+=7*24*60*60;
-//        }
-//    }elseif($accumulator<0){
-//        for($accumulator;$accumulator>0;$accumulator+1){
-//            $lapse-=7*24*60*60;
-//        }
-//    }
+    if($accumulator>0){
+      $lapse*=$accumulator;
+    }elseif($accumulator<0){
+        $lapse=($lapse+(7*24*60*60)*$accumulator);
+    }
     for($i=1;$i<=7;$i++){
             $weekStartDate = (time()-((date('N')-$i)*24*60*60)+ $lapse);
-            $day = date('l d', $weekStartDate);
+            $day = date('l d F', $weekStartDate);
             $week[]=$day;
     }
     return $week;
