@@ -9,7 +9,7 @@
             </li>
             <li class="pure-menu-item"><a href="?page=holiday" class="pure-menu-link">Holiday</a></li>
             <li class="pure-menu-item pure-menu-selected pure-menu-has-children">
-                <a href="#" class="pure-menu-link ">Rota</a>
+                <a href="?page=adminrota" class="pure-menu-link ">Rota</a>
                 <ul class="submenu">
                     <li class="pure-menu-item"><a href="?page=adminrotafoh" class="pure-menu-link">FOH rota</a></li>
                     <li class="pure-menu-item"><a href="?page=adminrotaboh" class="pure-menu-link">BOH rota</a></li>
@@ -31,6 +31,8 @@
             <a id="nextWeek" href="?page={{ page }}&week={{ weekNumber }}&direction=next">Next week</a>
         </div>
         <div class="pure-u-1">
+
+            <form action="{{ self }}?page=adminrotafoh" name="weeklyRota" method="post">
             <table class="pure-table">
                 <thead>
                     <tr>
@@ -44,9 +46,9 @@
                 {% for employee in users %}
                     <tr>
                         <td>{{ employee.name}} {{ employee.surname }}</td>
-                        {% for i in 0..6 %}
+                        {% for day in week  %}
                             <td>
-                                <select name="{{ employee.id_employee }}shift{{ i }}">
+                                <select name="employee_id,{{ employee.id_employee }}-date,{{ day }}">
                                     <option value="5">OFF</option>
                                     {% for time in shift %}
                                         {% if time.id_shift != 5 %}
@@ -61,9 +63,8 @@
                 {% endfor %}
                 </tbody>
             </table>
+                <input type="submit" name="submit" value="See and confirm rota">
+            </form>
         </div>
     </div>
-{% endblock %}
-{% block script %}
-
 {% endblock %}

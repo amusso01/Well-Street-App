@@ -31,7 +31,7 @@ function getWeek($accumulator=1){
     }
     for($i=1;$i<=7;$i++){
             $weekStartDate = (time()-((date('N')-$i)*24*60*60)+ $lapse);
-            $day = date('l d F', $weekStartDate);
+            $day = date('D d M Y', $weekStartDate);
             $week[]=$day;
     }
     return $week;
