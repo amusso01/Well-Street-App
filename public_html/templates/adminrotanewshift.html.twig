@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block nav %}
+    <div class="pure-menu custom-restricted-width">
+        <a class="pure-menu-heading" href="{{ self }}?page={{ homeLink }}"><img class="pure-img-responsive" id="logoImg" src="{{ FILE_ROOT }}/media/images/logo.png" alt="well street logo"></a>
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item ">
+                <a href="?page=employees" class="pure-menu-link">Employees</a>
+            </li>
+            <li class="pure-menu-item"><a href="?page=holiday" class="pure-menu-link">Holiday</a></li>
+            <li class="pure-menu-item pure-menu-selected pure-menu-has-children">
+                <a href="?page=adminrota" class="pure-menu-link ">Rota</a>
+                <ul class="submenu">
+                    <li class="pure-menu-item"><a href="?page=adminrotafoh" class="pure-menu-link">FOH rota</a></li>
+                    <li class="pure-menu-item"><a href="?page=adminrotaboh" class="pure-menu-link">BOH rota</a></li>
+                    <li class="pure-menu-item"><a href="?page=adminrotanewshift" class="pure-menu-link">Create new shift</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="pure-g">
+        <div class="pure-u-1-2">
+            <h3>Add a new shift to database</h3>
+            <form class="pure-form pure-form-aligned" method="post" action="?page=adminrotanewshift">
+                <fieldset>
+                    <div class="pure-control-group">
+                        <label for="startTime">Start time</label>
+                        <input id="startTime" name="startTime" type="time" placeholder="12h format">
+                    </div>
+
+                    <div class="pure-control-group">
+                        <label for="finishTime">Finish time</label>
+                        <input id="finishTime" name="finishTime" type="time" placeholder="12h format">
+                        <p class="error">{{ required }}</p>
+                    </div>
+
+                    <p>Shift start time : <span id="start"></span></p>
+                    <p>Shift finish time : <span id="finish"></span></p>
+                    <div class="pure-controls">
+                        <button type="submit" class="pure-button pure-button-primary">Confirm</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="pure-u-1-2">
+            <h3>Shift in the database</h3>
+            <div class="shiftList">
+                <ul>
+                    {% for time in shift %}
+                        {% if time.start_time != '' %}
+                        <li>{{ time.start_time }} to {{ time.finish_time }}</li>
+                        {% endif %}
+                    {% endfor %}
+
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="media/js/jquery-3.3.1.min.js"></script>
+    <script src="media/js/jsStyle.js"></script>
+{% endblock %}
