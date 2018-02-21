@@ -12,10 +12,10 @@ namespace Wellstreet\classes;
 class fileList
 {
 
-    protected $getPage;
-    protected $templateList;
-    protected $templateArray;
-    protected $viewList;
+    protected $getPage; //page _GET from the url
+    protected $templateList; //name of all the template inside a specific directory
+    protected $templateArray; //name of all the template array inside a specific directory
+    protected $viewList; // name of all the model inside the specific directory
 
     function __construct($getPage, $templateList, $templateArray, $viewList)
     {
@@ -26,6 +26,7 @@ class fileList
     }
 
     //Remove variables from a given array
+    //Specifically use in the template directory to retrieve the templates list
     protected function stripFile($array){
         foreach ($array as $value){
             if (($value == ".") || ($value == "..") || ($value=="base.html.twig") || ($value=="arrays")){ //skip those file
@@ -37,7 +38,8 @@ class fileList
         return $newArray;
     }
 
-    // return the name of the model required
+    // return the model required
+    //based on the page url retrieve the model to call from the model list pass in the constructor
     protected function getView(){
         $controller=$this->getPage.'.php';
         foreach ($this->viewList as $value){
@@ -48,7 +50,9 @@ class fileList
         return '404.php';
     }
 
-
+    // return the template required
+    //based on the page url retrieve the template to call from the template list pass in the constructor
+    //use by Twig to render the right template
     public function getTemplate(){
         $template=$this->getPage.'.html.twig';
         foreach ($this->templateList as $value){
@@ -71,14 +75,12 @@ class fileList
 
     }
 
+    //return the specific path to the model required
+    //if the model required doesn't exist return a 404 model
     public function displayView(){
         $finalView=$this->getView();
         foreach ($this->viewList as $view){
-            switch ($finalView){
-                case $view:
-                    return __DIR__ . '/../../../public_html/model/' .$finalView;
-                    break;
-            }
+            if ($finalView==$view){return __DIR__ . '/../../../public_html/model/' .$finalView;}
         }
         return __DIR__ . '/../../../public_html/model/404.php';
     }

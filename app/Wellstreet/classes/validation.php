@@ -75,6 +75,8 @@ class validation
 
         }
 
+
+        //sanitize, trim and lower the user entry in th registration form
     public function sanitizeEntry(){
         foreach ($this->postArray as $key=>$value){
             if($value=='pass'){
@@ -87,25 +89,28 @@ class validation
         }
     }
 
+    //This function validate the username and password for a new employee/admin registration
     protected function setUsername()
     {
         $this->sanitizeEntry();
         $uname = $this->postArray['uname'];
+    /*=== username validation ===*/
         if ($uname != '') {
-            if (strlen($uname) < 6 || strlen($uname) > 45) {
+            if (strlen($uname) < 6 || strlen($uname) > 45) { //check username length
                 $this->errorArray['unameError'] = 'Maximum 45 minimum 6 characters for username';
             } else {
                 $number = preg_match_all("/[0-9]/", $uname);
-                if ($number < 1) {
+                if ($number < 1) {//check if username contains number, at least one
                     $this->errorArray['unameError'] = 'Username must contains at least 1 number';
                 } else {
                     $query = "SELECT * FROM users WHERE username='$uname'";
                     $result = mysqli_query($this->mysqli, $query);
-                    if ($result->num_rows !== 0) {
+                    if ($result->num_rows !== 0) {//check if the username was already selected by someone else
                         $this->errorArray['unameError'] = 'Username already exist please choose a different one';
                     } else {
                         $this->sessionArray['uname'] = $uname;
                         $pass = $this->postArray['pass'];
+    /*=== password validation ===*/
                         if ($pass != '') {
                             if (strlen($pass) < 8 || strlen($pass) > 15) {
                                 $this->errorArray['redisplayUser'] = $uname;
@@ -127,6 +132,10 @@ class validation
             }
         }
     }
+
+
+    /*======== user credentials validation =========*/
+
     protected function validateName($name){
         if($name==''){
             $this->errorArray['nameError']='This field cannot be empty';
@@ -179,7 +188,8 @@ class validation
             return false;
         }
     }
-    //Validate the post code using api call to getaddtess() service
+    //Validate the post code using api call to getaddress() service
+    //We are using an external api to validate and retrieve the postcode and address
     public function validatePCode($pCode){
         $pCode = preg_replace('/\s+/', '', $pCode);
         $response=new apiCurl('eK7S7hMgwECk4puypAK_6Q12122','https://api.getAddress.io/find/',$pCode);
@@ -196,6 +206,7 @@ class validation
             return false;
         }
     }
+
     protected function validatePayRate($payRate){
         if(preg_match("/[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)/",$payRate)){
             return true;
@@ -203,6 +214,7 @@ class validation
             return false;
         }
     }
+
     protected function validateHoliday($holiday){
         if($holiday==''){
             $this->errorArray['holidayError']='Select holiday allowed in one year';
@@ -215,7 +227,12 @@ class validation
             return false;
         }
     }
+/*====== finish user credentials validation ======*/
 
+
+
+//this function is using the above validator to validate the whole employee details form
+//in case of mistake the function will redisplay the correct value and an error message for the fields with mistake
     public function setUser(){
         if($this->validateName($this->postArray['name'])) {
             $this->errorArray['redisplayName'] = htmlentities($this->postArray['name']);
@@ -285,6 +302,13 @@ class validation
             }
         }
     }
+
+
+    /*====== public funtion to call private one =======*/
+
+
+
+    //this function prepare the inputed and correct data for the database storing them in the session
     public function buildUser(){
         $this->sessionArray=array(
             'name'=>$this->errorArray['redisplayName'],
@@ -316,6 +340,10 @@ class validation
         }
         return new user($this->sessionArray,$credentials);
     }
+
+
+
+
     public function validateuser(){
         $this->setUsername();
     }

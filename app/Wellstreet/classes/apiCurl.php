@@ -11,9 +11,9 @@ namespace Wellstreet\classes;
 
 class apiCurl
 {
-    public $key;
-    public $url;
-    public $parameter;
+    public $key;//service api key
+    public $url;//url to call
+    public $parameter;//parameter to pass to the service
 
     function __construct($key, $url, $parameter)
     {
@@ -22,6 +22,8 @@ class apiCurl
         $this->parameter = $parameter;
     }
 
+
+//    call the web service and return an understandable response
     public function addressResult()
     {
         $my_curl = curl_init();
@@ -32,7 +34,7 @@ class apiCurl
         $res = curl_exec($my_curl);
         if (!curl_errno($my_curl)) {
             switch ($http_code = curl_getinfo($my_curl, CURLINFO_HTTP_CODE)) {
-                case 200:  # OK
+                case 200:  // OK
                     $res=json_decode($res);
                     return $res;
                     break;

@@ -12,11 +12,14 @@ class uri
     protected $getArray;
     function __construct($getArray)
     {
-        $this->getArray=$getArray;
+        $this->getArray=$getArray;//_GET array
     }
 
     /**--------Setter-------*/
 
+
+    //retrieve the value of page inside the _GET array
+    //this value will be use to call the model responsible of displaying the right template
     protected function extractUri()
     {
         if (!isset($this->getArray['page'])) {

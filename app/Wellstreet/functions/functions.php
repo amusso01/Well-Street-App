@@ -18,7 +18,8 @@ function logOut(){
     session_destroy();
 }
 
-//Weekly calendar
+//Weekly calendar return the selected week in format D d M Y example: Mon 26 Feb 2018
+//if you would like to change the format output modify the $day date variable
 //parameter how many week from the actual week do you want to add
 //for exemple pass 1 return next week, -1 last week
 //default = 0 return current week

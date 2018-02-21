@@ -13,8 +13,6 @@ use Couchbase\Exception;
 
 class user
 {
-
-
 public $userDetails;
 public $userCredentials;
 protected $db;
@@ -58,6 +56,8 @@ protected function insertQuery($value, $table){
     return $query;
 }
 
+//this function will INSERT the users credential into the db
+//a transaction has been used to ensure both table (user and employee) are correctly update
 public function pushToDb(){
     $userName=$this->userCredentials['username'];
     $query = "SELECT * FROM users WHERE username='$userName'";
@@ -80,6 +80,7 @@ public function pushToDb(){
     }
 }
 
+//set the db connection inside the class
 public function setDb($mysql){
     $this->db=$mysql;
 }
