@@ -42,7 +42,7 @@ class apiCurl
                     return 'No addresses could be found for this postcode';
                     break;
                 case 400:
-                    return 'Your postcode is not valid';
+                    return 'Your postcode was not valid. Please enter a new postcode';
                     break;
                 case 401:
                     return 'Api key is not valid or expired';

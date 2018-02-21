@@ -133,6 +133,12 @@ class validation
         }
     }
 
+    //remove escape characters in case  we have to redisplay the field
+
+    protected function RemoveChar($field){
+        return str_replace('\\','',$field);
+    }
+
 
     /*======== user credentials validation =========*/
 
@@ -141,7 +147,7 @@ class validation
             $this->errorArray['nameError']='This field cannot be empty';
             return false;
         }else{
-            if (preg_match("/^[a-zA-Z'. -]+$/", $name)) {
+            if (preg_match("/[\p{L}' -]+/", $name)) {
                 return true;
             }else{
                 $this->errorArray['nameError']='Check this field character not allowed';
@@ -235,10 +241,10 @@ class validation
 //in case of mistake the function will redisplay the correct value and an error message for the fields with mistake
     public function setUser(){
         if($this->validateName($this->postArray['name'])) {
-            $this->errorArray['redisplayName'] = htmlentities($this->postArray['name']);
+            $this->errorArray['redisplayName'] = $this->removeChar(htmlentities($this->postArray['name']));
             $this->valid = true;
             if ($this->validateName($this->postArray['sname'])){
-                $this->errorArray['redisplaySName'] = htmlentities($this->postArray['sname']);
+                $this->errorArray['redisplaySName'] =$this->removeChar(htmlentities($this->postArray['sname']));
                 if($this->validateChoices($this->postArray['gender'])){
                     $this->errorArray['gender']=$this->postArray['gender'];
                     if($this->validateChoices($this->postArray['department'])){
@@ -264,11 +270,11 @@ class validation
                                                         $this->valid=false;
                                                     }
                                                 }else{
-                                                    $this->errorArray['payError']='Pay rate must be a number';
+                                                    $this->errorArray['payError']='Pay rate must be a number. Please enter a new pay rate';
                                                     $this->valid=false;
                                                 }
                                             }else{
-                                                $this->errorArray['phoneError']='Phone number is incorrect';
+                                                $this->errorArray['phoneError']='Phone number was incorrect. Please try again';
                                                 $this->valid=false;
                                             }
                                         }else{
@@ -276,19 +282,19 @@ class validation
                                             $this->valid=false;
                                         }
                                     }else{
-                                        $this->errorArray['dobError']='Date format is not valid please enter YYYY-mm-dd';
+                                        $this->errorArray['dobError']='Date format was not valid please enter YYYY-mm-dd';
                                         $this->valid =false;
                                     }
                                 }else{
-                                    $this->errorArray['ninError']='The NIN is not valid';
+                                    $this->errorArray['ninError']='The NIN was not valid. Please enter a valid NIN';
                                     $this->valid =false;
                                 }
                             }else{
-                                $this->errorArray['sdateError']='Date format is not valid please enter YYYY-mm-dd';
+                                $this->errorArray['sdateError']='Date format was not valid please enter YYYY-mm-dd';
                                 $this->valid =false;
                             }
                         }else{
-                            $this->errorArray['emailError']='Email is not a valid';
+                            $this->errorArray['emailError']='Email was not a valid. Please enter a valid Email';
                             $this->valid =false;
                         }
                     }else{
@@ -298,8 +304,10 @@ class validation
                     $this->valid =false;
                 }
             }else{
+                $this->errorArray['snameError']='Please enter this field correctly';
                 $this->valid =false;
             }
+
         }
     }
 

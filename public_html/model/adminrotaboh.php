@@ -20,7 +20,10 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])){
         $variables['weekNumber']=1;
     }
     $variables=array_merge($variables,$week);
-    $query ="SELECT id_employee,name,surname FROM employees WHERE department='boh'";
+    $query ="SELECT E.id_employee,E.name,E.surname 
+FROM employees E
+JOIN users U 
+WHERE department='boh' AND U.users_id=E.user_id AND U.adminaccess='0'";
     $result=$mysqli->query($query);
     if ($result==false){
         echo $mysqli->error;
