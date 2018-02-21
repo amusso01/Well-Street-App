@@ -7,28 +7,47 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])){
     header( 'refresh:4;url=index.php' );
 }elseif(isset($_POST['submit'])){
     $rota=array();
+    /*this loop create an bidimensional array of [emplyee_id][date]=>shift_id*/
     foreach ($_POST as $key =>$value){
         if ($key == 'submit'){
             continue;
         }else{
-            /*get an array of employee_id,id => date,D_d_m_Y*/
+    /*get an array of employee_id,id => date,D_d_m_Y*/
             $employeeDate= explode('-',$key);
-            /*get the shift date in format Y-m-d ready for mysql*/
+    /*get the shift date in format Y-m-d ready for mysql*/
             $date=explode(',',$employeeDate[1]);
             $date=explode("_",$date[1]);
             $date=implode(' ',$date);
             $date=date_create_from_format('D d M Y',$date);
-            var_dump($date->format('Y-m-d'));
-            /*get the employee id*/
-
-
+    /*get the employee id*/
             $employeeId=explode(',',$employeeDate[0]);
-            var_dump($employeeId);
+            $id=$employeeId[1];
+            $date=$date->format('Y-m-d');
+            $shift=$value;
+            $rota[$id][$date]=$value;
         }
     }
-
+$query='INSERT INTO `schedule_rota` (`shift_id`, `employee_id`, `date`) VALUES ';
+    $values='';
+foreach ($rota as $employee=>$value){
+            $id=$mysqli->real_escape_string($employee);
+            foreach ($value as $date=>$shift_id){
+                $date=$mysqli->real_escape_string($date);
+                $shift_id=$mysqli->real_escape_string($shift_id);
+                $values.="($shift_id,$id,$date),";
+            }
+}
+$values=rtrim($values,',');
+$query.=$values.';';
+//if ($mysqli->query($query)==TRUE){
+//    echo $twig->render('loader.html.twig',$variables);
+//    header( 'refresh:1;url=index.php?page=adminrota' );
+//}else{
+//    die($mysqli->error);
+//}
 
 }else{
+
     $variables=include_once __DIR__.'/../templates/arrays/adminrotafoh.php';
     if (isset($_GET['week'])){
         if($_GET['direction']=="next"){

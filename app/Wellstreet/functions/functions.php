@@ -37,3 +37,15 @@ function getWeek($accumulator=1){
     }
     return $week;
 }
+
+//Array merge value with same key
+function concatArrayKey($arrayToConcat){
+//    $newArray=array();
+//    foreach ($arrayToConcat as $key => $value){
+//
+//        $newArray[$key]=$value;
+//
+//        var_dump($newArray);
+//    }
+var_dump($arrayToConcat);
+}
