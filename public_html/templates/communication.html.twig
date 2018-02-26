@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block header %}
+    <h1>Employee communication</h1>
+{% endblock %}
+
 {% block nav %}
     <div class="pure-menu custom-restricted-width">
         <a class="pure-menu-heading" href="{{ self }}?page={{ homeLink }}"><img class="pure-img-responsive" id="logoImg" src="{{ FILE_ROOT }}/media/images/logo.png" alt="well street logo"></a>
@@ -10,7 +14,7 @@
             <li class="pure-menu-item"><a href="?page=holiday" class="pure-menu-link">Holiday</a></li>
             <li class="pure-menu-item"><a href="?page=documents" class="pure-menu-link">Documents</a></li>
             <li class="pure-menu-item"><a href="?page=payslip" class="pure-menu-link">Payslip</a></li>
-            <li class="pure-menu-item"><a href="?page=communication" class="pure-menu-link">Communication</a></li>
+            <li class="pure-menu-item pure-menu-selected"><a href="?page=communication" class="pure-menu-link">Communication</a></li>
             <li class="pure-menu-item pure-menu-has-children">
                 <a href="?page=adminrota" class="pure-menu-link ">Rota</a>
                 <ul class="submenu">
@@ -23,3 +27,6 @@
     </div>
 {% endblock %}
 
+{% block content %}
+
+{% endblock %}

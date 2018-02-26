@@ -32,7 +32,6 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])) {
     }else{
         die($mysqli->error);
     }
-
     $variables=array_merge($variables,$details);
     echo $twig->render($template->getTemplate(),$variables);
 }else{
