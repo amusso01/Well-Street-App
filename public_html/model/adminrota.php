@@ -24,7 +24,7 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])) {
     $nextWeekNumber=date('W',$nextWeekNumber);
 
 
-    $query="    SELECT concat_ws(' ',E.name,E.surname) as employee,concat_ws('-',R.start_time,R.finish_time) as shift,WEEK(S.date,1) as week_number,S.date
+    $query="    SELECT concat_ws(' ',E.name,E.surname) as employee,concat_ws('-',R.start_time,R.finish_time) as shift,WEEK(S.date,1) as week_number,S.date,shift_length
 FROM schedule_rota S
 join employees E on S.employee_id=E.id_employee
 join shift R ON S.shift_id=R.id_shift
@@ -33,24 +33,28 @@ order by employee,date";
     $result=$mysqli->query($query);
    if ($result){
      while ($row=$result->fetch_assoc()) {
+
          if ($row['week_number'] == $thisWeekNumber) {
              $rotaThisWeek['currentWeek'][$row['employee']][] = array($row['date'] => $row['shift']);
              $flagThisWeek=true;
          } elseif ($row['week_number'] == $nextWeekNumber) {
              $rotaNextWeek['weekAhead'][$row['employee']][] = array($row['date'] => $row['shift']);
              $flagNextWeek=true;
+
          }
      }
+
      if($flagThisWeek) {
          $variables = array_merge($rotaThisWeek, $variables);
      }
-     if($flagNextWeek){
-         $variables = array_merge($rotaNextWeek, $variables);
-     }
+       if($flagNextWeek){
+           $variables = array_merge($rotaNextWeek, $variables);
+       }
    }else{
        die($mysqli->error);
    }
    $result->free_result();
+
     if(isset($_GET['rota'])=='complete'){
         $variables['RotaUpload']='Rota correctly upload';
         echo $twig->render($template->getTemplate(),$variables);

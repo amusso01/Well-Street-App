@@ -8,12 +8,6 @@
         <div class="pure-u-1-2">
             <h3>Enter the rota for the {{ department }} department</h3>
         </div>
-        <div class="pure-u-1-2">
-            {% if weekNumber > 1 %}
-                <a id="nextWeek" href="?page={{ page }}&week={{ weekNumber }}&direction=prev">Prev week</a>
-            {% endif %}
-            <a id="nextWeek" href="?page={{ page }}&week={{ weekNumber }}&direction=next">Next week</a>
-        </div>
         <div class="pure-u-1">
 
             <form action="{{ self }}?page=adminrotafoh" name="weeklyRota" method="post">

@@ -9,6 +9,8 @@
             </li>
             <li class="pure-menu-item"><a href="?page=holiday" class="pure-menu-link">Holiday</a></li>
             <li class="pure-menu-item"><a href="?page=documents" class="pure-menu-link">Documents</a></li>
+            <li class="pure-menu-item"><a href="?page=payslip" class="pure-menu-link">Payslip</a></li>
+            <li class="pure-menu-item"><a href="?page=payslip" class="pure-menu-link">Communication</a></li>
             <li class="pure-menu-item pure-menu-has-children">
                 <a href="?page=adminrota" class="pure-menu-link ">Rota</a>
                 <ul class="submenu">
@@ -46,18 +48,18 @@
                     <th>Surname</th>
                     <th>Email</th>
                     <th>Phone</th>
-                    <th>Edit</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for employee in users %}
                 <tr>
                     <td>{{ employee.id_employee}}</td>
-                    <td>{{ employee.name }}a</td>
+                    <td>{{ employee.name }}</td>
                     <td>{{ employee.surname }}</td>
                     <td>{{ employee.email }}</td>
                     <td>{{ employee.phone_number }}</td>
-                    <td><a href="{{ self }}?page=edit&id={{ employee.id_employee }}">Edit</a></td>
+                    <td><a href="{{ self }}?page=edit&id={{ employee.id_employee }}">See details</a></td>
                 </tr>
                 {% endfor %}
                 </tbody>
