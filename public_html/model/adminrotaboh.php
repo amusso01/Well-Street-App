@@ -27,7 +27,6 @@ group by week_number";
                 $weekOfTheYear=date('W',$weekOfTheYear);
             }
         }
-
     }else{
         die($mysqli->error);
     }
