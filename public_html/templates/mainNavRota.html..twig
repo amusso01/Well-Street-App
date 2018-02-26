@@ -1,6 +1,4 @@
-{% extends 'base.html.twig' %}
 
-{% block nav %}
     <div class="pure-menu custom-restricted-width">
         <a class="pure-menu-heading" href="{{ self }}?page={{ homeLink }}"><img class="pure-img-responsive" id="logoImg" src="{{ FILE_ROOT }}/media/images/logo.png" alt="well street logo"></a>
         <ul class="pure-menu-list">
@@ -9,7 +7,7 @@
             </li>
             <li class="pure-menu-item"><a href="?page=holiday" class="pure-menu-link">Holiday</a></li>
             <li class="pure-menu-item"><a href="?page=documents" class="pure-menu-link">Documents</a></li>
-            <li class="pure-menu-item pure-menu-has-children">
+            <li class="pure-menu-item pure-menu-selected pure-menu-has-children">
                 <a href="?page=adminrota" class="pure-menu-link ">Rota</a>
                 <ul class="submenu">
                     <li class="pure-menu-item"><a href="?page=adminrotafoh" class="pure-menu-link">FOH rota</a></li>
@@ -19,5 +17,3 @@
             </li>
         </ul>
     </div>
-{% endblock %}
-

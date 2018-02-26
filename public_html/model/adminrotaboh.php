@@ -30,7 +30,7 @@ group by week_number";
     }else{
         die($mysqli->error);
     }
-    
+
     $result->free_result();
     $variables=array_merge($variables,$week);
 
