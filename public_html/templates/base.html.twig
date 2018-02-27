@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-    {% block head %}
+
         <meta charset="UTF-8">
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, viewport-fit=cover">
@@ -17,7 +17,10 @@
         <link rel="stylesheet" href="media/css/mediaqueries.css">
         <link rel="stylesheet" href="media/css/style.min.css">
         <link rel="stylesheet" href="media/css/mystyle.css">
-    {% endblock %}
+        {% block head %}
+
+        {% endblock %}
+
         <title>{{ title }}</title>
     </head>
     <body>

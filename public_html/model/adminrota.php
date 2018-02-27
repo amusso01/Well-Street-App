@@ -1,6 +1,6 @@
 <?php
 if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])) {
-    $variables = $variables = include_once __DIR__ . '/../templates/arrays/nopriviledge.php';
+    $variables = include_once __DIR__ . '/../templates/arrays/nopriviledge.php';
     echo $twig->render('nopriviledge.html.twig', $variables);
     logOut();
     header('refresh:4;url=index.php');
@@ -10,7 +10,7 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])) {
     $flagThisWeek=false;
     $flagNextWeek=false;
 
-    $variables = $variables = include_once __DIR__ . '/../templates/arrays/adminrota.php';
+    $variables = include_once __DIR__ . '/../templates/arrays/adminrota.php';
    /*==========build calendar this and next week===========*/
     $thisWeek['thisWeek']=getWeek(0,'D d M');
     $nextWeek['nextWeek']=getWeek(1,'D d M');
