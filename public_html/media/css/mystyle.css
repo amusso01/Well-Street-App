@@ -1,3 +1,6 @@
+body ul{
+    list-style: none;
+}
 .pure-form-message.error{
     color:red;
     font-weight: bold;

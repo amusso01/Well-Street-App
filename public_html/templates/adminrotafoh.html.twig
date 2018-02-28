@@ -10,7 +10,7 @@
         </div>
         <div class="pure-u-1">
 
-            <form action="{{ self }}?page=adminrotafoh" name="weeklyRota" method="post">
+            <form  class="pure-form" action="{{ self }}?page=adminrotafoh" name="weeklyRota" method="post">
             <table class="pure-table">
                 <thead>
                     <tr>
@@ -26,6 +26,7 @@
                         <td>{{ employee.name}} {{ employee.surname }}</td>
                         {% for day in week  %}
                             <td>
+
                                 <select name="employee_id,{{ employee.id_employee }}-date,{{ day }}">
                                     <option value="5">OFF</option>
                                     {% for time in shift %}
@@ -41,7 +42,8 @@
                 {% endfor %}
                 </tbody>
             </table>
-                <input type="submit" name="submit" value="See and confirm rota">
+                <button type="submit" name="submit" class="pure-button pure-button-primary"><i class="fas fa-arrow-circle-up"></i> Upload rota</button>
+
             </form>
         </div>
     </div>

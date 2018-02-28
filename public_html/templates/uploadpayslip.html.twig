@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block header %}
-    <h1>Payslip</h1>
+    <h1>Upload Payslip</h1>
 {% endblock %}
+
+
 {% block nav %}
     <div class="pure-menu custom-restricted-width">
         <a class="pure-menu-heading" href="{{ self }}?page={{ homeLink }}"><img class="pure-img-responsive" id="logoImg" src="{{ FILE_ROOT }}/media/images/logo.png" alt="well street logo"></a>
@@ -26,15 +28,31 @@
     </div>
 {% endblock %}
 
+
 {% block content %}
     <div class="pure-g">
         <div class="pure-u-1">
-            <h3>Select which employee you want to upload payslip</h3>
-            <ul>
-                {% for user in employee %}
-                    <li><i class="far fa-user"></i> <a href="{{ self }}?page=uploadpayslip&id={{ user.id_employee }}">{{ user.employee|escape}}</a></li>
-                {% endfor %}
-            </ul>
+            <form method="post" action="{{ self }}?page=uploadpayslip&upload=true" class="pure-form">
+                <fieldset>
+                    <select name="month" id="month">
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                    
+
+                    <button type="submit" class="pure-button pure-button-primary"><i class="fas fa-arrow-circle-up"></i> Upload</button>
+                </fieldset>
+            </form>
         </div>
     </div>
 {% endblock %}
