@@ -9,7 +9,7 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])) {
     $variables=include_once __DIR__ . '/../templates/arrays/documents.php';
     $updir=dirname(__FILE__).'/../../file_uploaded/documents/';
     $fileToDisplay=array();
-      /*===============Display file stored in the system============*/
+      /*===============  Display file stored in the system  ============*/
       $storedFile=setAllFile($updir);
       foreach ($storedFile as $value){
           $newValue='';
@@ -62,9 +62,11 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])) {
                         $upfilename=$updir.$upfilename;
                         if(is_dir($updir)){
                             if (move_uploaded_file($tmpName,$upfilename)){
-                                echo 'FILE UPLOADED';
+                                $variables['uploadStatus']='File correctly upload';
+                                echo $twig->render('loader.html.twig',$variables);
+                                header( 'refresh:1;url=index.php?page=documents' );
                             }else{
-                                echo 'ERROR FILE NOT UPLOADED';
+                                $variables['uploadStatus']='Failed to upload please try again';
                             }
                         }else{
                             die('upload directory missing');

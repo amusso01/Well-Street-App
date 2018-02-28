@@ -42,7 +42,7 @@
         </div>
         <div class="pure-u-1-2">
             <h3>Upload a file</h3>
-            <form class="pure-form" name="upload" enctype="multipart/form-data" action="{{ self }}?page=documentsUpload" method="post">
+            <form class="pure-form" name="upload" enctype="multipart/form-data" action="{{ self }}?page=documents" method="post">
                 <fieldset>
 
                         <label for="userfile">Upload this file:</label>
@@ -58,6 +58,7 @@
 
                     <div class="pure-controls">
                         <button type="submit" class="pure-button pure-button-primary">Submit</button>
+                        <span><strong>{{ uploadStatus }}</strong></span>
                     </div>
                 </fieldset>
             </form>

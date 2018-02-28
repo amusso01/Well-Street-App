@@ -17,7 +17,6 @@ $TEMPLATE_PATH='templates/';
 //path of file
 $self = htmlentities($_SERVER['PHP_SELF']);
 
-//basic array
 
 
 //general setting
