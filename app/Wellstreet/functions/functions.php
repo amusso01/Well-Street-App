@@ -45,14 +45,3 @@ function getWeekNumber($aDate){
     var_dump($date->format('d-m-Y'));
 }
 
-//Array merge value with same key
-function concatArrayKey($arrayToConcat){
-//    $newArray=array();
-//    foreach ($arrayToConcat as $key => $value){
-//
-//        $newArray[$key]=$value;
-//
-//        var_dump($newArray);
-//    }
-var_dump($arrayToConcat);
-}

@@ -314,8 +314,6 @@ class validation
 
     /*====== public funtion to call private one =======*/
 
-
-
     //this function prepare the inputed and correct data for the database storing them in the session
     public function buildUser(){
         $this->sessionArray=array(

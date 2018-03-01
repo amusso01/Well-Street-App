@@ -90,6 +90,8 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])) {
                     }
                     $variables['error']=$error;
                 }
+            }else{
+                $variables['fileError']='You must select a file';
             }
         }
 

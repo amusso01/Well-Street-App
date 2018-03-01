@@ -22,5 +22,7 @@ WHERE U.users_id=E.user_id AND U.adminaccess='0'";
         die($mysqli->error);
     }
 
+
+
     echo $twig->render($template->getTemplate(),$variables);
 }
