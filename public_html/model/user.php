@@ -7,16 +7,16 @@ if ( !isset($_SESSION['user']) || !isset($_SESSION['uName'])){
     header( 'refresh:4;url=index.php' );
 }else{
     $username=$_SESSION['uName'];
-    $query="SELECT concat_ws(' ',name,surname ) as employee, username
+    $query="SELECT name as employee, username
 FROM users U
 JOIN employees E ON U.users_id=E.user_id 
-WHERE username=$username";
+WHERE username='$username'";
     if($result=$mysqli->query($query)){
         if ($result->num_rows==1){
             while ($row=$result->fetch_assoc()){
-                foreach ($row as $key=>$item) {
-                    if($key='employee'){
-                        $_SESSION['employee']=$item;
+                foreach ($row as $key=>$value){
+                    if($key=='employee'){
+                        $_SESSION['employee']=$value;
                     }
                 }
             }
@@ -31,7 +31,6 @@ WHERE username=$username";
 
 
 
-    echo 'USER';
-    var_dump($_SESSION);
+    echo $twig->render($template->getTemplate(),require __DIR__.'/../templates/arrays/'.$template->getArray());
 
 }
