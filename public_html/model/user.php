@@ -6,8 +6,10 @@ if ( !isset($_SESSION['user']) || !isset($_SESSION['uName'])){
     logOut();
     header( 'refresh:4;url=index.php' );
 }else{
+
+    /*======= retrieve employee name from user_id =======*/
     $username=$_SESSION['uName'];
-    $query="SELECT name as employee, username
+    $query="SELECT name as employee, username,id_employee
 FROM users U
 JOIN employees E ON U.users_id=E.user_id 
 WHERE username='$username'";
@@ -17,6 +19,9 @@ WHERE username='$username'";
                 foreach ($row as $key=>$value){
                     if($key=='employee'){
                         $_SESSION['employee']=$value;
+                    }
+                    if ($key=='id_employee'){
+                        $_SESSION['employee_id']=$value;
                     }
                 }
             }

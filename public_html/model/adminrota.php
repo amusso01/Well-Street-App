@@ -6,7 +6,6 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])) {
     header('refresh:4;url=index.php');
 }else{
 
-
     $flagThisWeek=false;
     $flagNextWeek=false;
 
