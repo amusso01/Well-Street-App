@@ -1,5 +1,6 @@
 <?php
-echo 'thanks';
+
 session_regenerate_id();
 logOut();
-header( 'refresh:4;url=index.php' );
+echo $twig->render('loader.html.twig',require __DIR__.'/../templates/arrays/'.$template->getArray());
+header( 'refresh:2;url=index.php' );

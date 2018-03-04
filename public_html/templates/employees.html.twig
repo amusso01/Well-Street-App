@@ -1,7 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block nav %}
-    {% include 'mainNav.html..twig' %}
+    <div class="pure-menu custom-restricted-width">
+        <a class="pure-menu-heading" href="{{ self }}?page={{ homeLink }}"><img class="pure-img-responsive" id="logoImg" src="{{ FILE_ROOT }}/media/images/logo.png" alt="well street logo"></a>
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item pure-menu-selected ">
+                <a href="?page=employees" class="pure-menu-link"><i class="fas fa-address-book"></i> Employees</a>
+            </li>
+            <li class="pure-menu-item"><a href="?page=holiday" class="pure-menu-link"><i class="fas fa-plane"></i> Holiday</a></li>
+            <li class="pure-menu-item"><a href="?page=documents" class="pure-menu-link"><i class="fas fa-file-alt"></i> Documents</a></li>
+            <li class="pure-menu-item "><a href="?page=payslip" class="pure-menu-link"><i class="fas fa-dollar-sign"></i> Payslip</a></li>
+            <li class="pure-menu-item"><a href="?page=communication" class="pure-menu-link"><i class="fas fa-envelope"></i> Communication</a></li>
+            <li class="pure-menu-item pure-menu-has-children">
+                <a href="?page=adminrota" class="pure-menu-link "> <i class="fas fa-clock"></i> Rota</a>
+                <ul class="submenu">
+                    <li class="pure-menu-item"><a href="?page=adminrotafoh" class="pure-menu-link">FOH rota</a></li>
+                    <li class="pure-menu-item"><a href="?page=adminrotaboh" class="pure-menu-link">BOH rota</a></li>
+                    <li class="pure-menu-item"><a href="?page=adminrotanewshift" class="pure-menu-link">Create new shift</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 {% endblock %}
 {% block header %}
     <h1>Employees</h1>
@@ -13,7 +32,7 @@
             <form class="pure-form" method='post' action="?page=search">
                 <span>Surname</span>
                 <input type="text" id="surname"  name="search" class="pure-input-rounded">
-                <button type="submit" class="pure-button">Search to edit</button>
+                <button type="submit" class="pure-button"><i class="fas fa-search"></i> Search</button>
             </form>
         </div>
         <hr>
