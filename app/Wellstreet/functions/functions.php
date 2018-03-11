@@ -49,16 +49,15 @@ function getWeekNumber($aDate){
 
 	== PHP FILE TREE ==
 
-		Let's call it...oh, say...version 1?
-
 	== AUTHOR ==
 
 		Cory S.N. LaViska
 		http://abeautifulsite.net/
+        refactor to suit the project by Andrea Musso
 
 	== DOCUMENTATION ==
 
-		For documentation and updates, visit http://abeautifulsite.net/notebook.php?article=21
+        http://abeautifulsite.net/notebook.php?article=21
 
 */
 
