@@ -10,7 +10,7 @@ if ( !isset($_SESSION['user']) || !isset($_SESSION['uName'])){
     $monthDir='';
     $updir=dirname(__FILE__).'/../../file_uploaded/payslip/'.$dir.'/';
     $html=php_file_tree($updir );
-    var_dump($html);
+//    echo $html;
 //    if (file_exists($updir)){
 //        $yearDir=setAllFile($updir);
 //        foreach ($yearDir as $value){
@@ -40,6 +40,6 @@ if ( !isset($_SESSION['user']) || !isset($_SESSION['uName'])){
 //    }else{
 //        $variables['noPayslip']='You don\'t have any payslip in the database yet';
 //    }
-//    echo $twig->render($template->getTemplate(),$variables);
+    echo $twig->render($template->getTemplate(),$variables);
 }
 
