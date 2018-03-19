@@ -11,6 +11,7 @@ $twig = new Twig_Environment($loader, array(
 //    'cache' => '',//todo set a cache folder in production to optimize
     'debug'=>'true'//todo set to false in production
 ));
+$twig->addExtension(new \Wellstreet\classes\UcWordsExtension());
 
 /*--------SWIFTMAILER--------*/
 // Create the Transport

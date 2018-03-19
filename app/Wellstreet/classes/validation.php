@@ -8,8 +8,8 @@
 
 namespace Wellstreet\classes;
 
-use Wellstreet\classes\apiCurl;
-use Wellstreet\classes\user;
+
+
 
 class validation
 {

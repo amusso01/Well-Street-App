@@ -22,27 +22,30 @@ if ( !isset($_SESSION['user']) || !isset($_SESSION['uName'])){
     $nextWeekNumber=strtotime($nextWeek['nextWeek'][0]);
     $nextWeekNumber=date('W',$nextWeekNumber);
 
-
-    $query="    SELECT concat_ws(' ',E.name,E.surname) as employee,concat_ws('-',R.start_time,R.finish_time) as shift,WEEK(S.date,1) as week_number,S.date,shift_length
+    /*==========select scheduled rota form database========*/
+//    shift length has been added to the query for further implementation -> calculate weekly hour
+    $query="    SELECT concat_ws(' ',E.name,E.surname) as employee,concat_ws('-',R.start_time,R.finish_time) as shift,WEEK(S.date,1) as week_number,S.date,shift_length,S.employee_id
 FROM schedule_rota S
 join employees E on S.employee_id=E.id_employee
 join shift R ON S.shift_id=R.id_shift
 order by employee,date";
-
     $result=$mysqli->query($query);
     if ($result){
         while ($row=$result->fetch_assoc()) {
-
             if ($row['week_number'] == $thisWeekNumber) {
-                $rotaThisWeek['currentWeek'][$row['employee']][] = array($row['date'] => $row['shift']);
+                if ($row['employee_id']==$_SESSION['employee_id']){
+                    $row['employee']=$_SESSION['employee_id'];
+                    $rotaThisWeek['currentWeek'][$row['employee']][] = array($row['date'] => $row['shift']);
+                }else{
+                    $rotaThisWeek['currentWeek'][$row['employee']][] = array($row['date'] => $row['shift']);
+                }
+                //                var_dump($rotaThisWeek);
                 $flagThisWeek=true;
             } elseif ($row['week_number'] == $nextWeekNumber) {
                 $rotaNextWeek['weekAhead'][$row['employee']][] = array($row['date'] => $row['shift']);
                 $flagNextWeek=true;
-
             }
         }
-
         if($flagThisWeek) {
             $variables = array_merge($rotaThisWeek, $variables);
         }

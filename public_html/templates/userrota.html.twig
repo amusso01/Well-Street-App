@@ -37,7 +37,10 @@
                 <tbody>
                 {% for name,date in currentWeek %}
                     <tr>
-                        <td>{{ name}}</td>
+                        {% if name  ==  user_id %}
+                            <td> {{ user|capitalize }}</td>
+                        {% endif %}
+                        <td>{{ name |ucwords}}</td>
                         {% for array in date %}
                             {% for shift in array %}
                                 {%  if shift == '' %}
