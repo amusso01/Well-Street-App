@@ -39,7 +39,6 @@ order by employee,date";
                 }else{
                     $rotaThisWeek['currentWeek'][$row['employee']][] = array($row['date'] => $row['shift']);
                 }
-                //                var_dump($rotaThisWeek);
                 $flagThisWeek=true;
             } elseif ($row['week_number'] == $nextWeekNumber) {
                 $rotaNextWeek['weekAhead'][$row['employee']][] = array($row['date'] => $row['shift']);
@@ -56,6 +55,6 @@ order by employee,date";
         die($mysqli->error);
     }
     $result->free_result();
-
+//var_dump($rotaThisWeek);
         echo $twig->render($template->getTemplate(),$variables);
 }

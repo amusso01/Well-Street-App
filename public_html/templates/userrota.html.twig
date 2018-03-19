@@ -36,11 +36,9 @@
 
                 <tbody>
                 {% for name,date in currentWeek %}
-                    <tr>
-                        {% if name  ==  user_id %}
+                    {% if name  ==  user_id %}
+                        <tr id="rotaSelf">
                             <td> {{ user|capitalize }}</td>
-                        {% endif %}
-                        <td>{{ name |ucwords}}</td>
                         {% for array in date %}
                             {% for shift in array %}
                                 {%  if shift == '' %}
@@ -50,7 +48,21 @@
                                 {% endif %}
                             {% endfor %}
                         {% endfor %}
-                    </tr>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td> {{ name|ucwords }}</td>
+                            {% for array in date %}
+                                {% for shift in array %}
+                                    {%  if shift == '' %}
+                                        <td>OFF</td>
+                                    {%  else %}
+                                        <td>{{ shift }}</td>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        </tr>
+                    {% endif %}
                 {% endfor %}
                 </tbody>
             </table>
