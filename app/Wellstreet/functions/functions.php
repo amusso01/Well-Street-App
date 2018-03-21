@@ -123,6 +123,18 @@ function rmId($file){
     return rtrim($fileName,'_');
 }
 
+//ad hoc function. Create the path to the payslip file for download
+function payslipPath ($generalPath, $filePath){
+    $path='';
+    $pathBits=explode('/',$generalPath);
+    $finalPath=array_slice($pathBits,-3,3);
+    foreach ($finalPath as $item) {
+        $path.=$item.'/';
+    }
+    $path=rtrim($path,'/');
+    return $path.'/'.$filePath;
+}
+
 
 function php_file_tree($directory,$extensions = array()) {
     // Generates a valid XHTML list of all directories, sub-directories, and files in $directory
@@ -172,7 +184,8 @@ function php_file_tree_dir($directory, $extensions = array(), $first_call = true
                     // File
                     // Get extension (prepend 'ext-' to prevent invalid classes from extensions that begin with numbers)
                     $ext = "ext-" . substr($this_file, strrpos($this_file, ".") + 1);
-                    $php_file_tree .= "<li class=\"pft-file " . strtolower($ext) . "\"><a href=\"/$this_file\" download>" . htmlspecialchars(rmId($this_file)) . "</a></li>";
+                    $filePath=payslipPath($directory,$this_file);
+                    $php_file_tree .= "<li class=\"pft-file " . strtolower($ext) . "\"><a href=\"./../file_uploaded/payslip/$filePath\" download>" . htmlspecialchars(rmId($this_file)) . "</a></li>";
 				}
             }
         }
