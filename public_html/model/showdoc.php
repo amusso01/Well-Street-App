@@ -19,6 +19,7 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])) {
         } else {
             die($mysqli->error);
         }
+        $result->free();
         $fileName = $fileArray[0]['file_name'];
         $fileName = explode('.', $fileName);
         $extension = array_pop($fileName);

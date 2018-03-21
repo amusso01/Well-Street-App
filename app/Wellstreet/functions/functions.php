@@ -56,10 +56,73 @@ function getWeekNumber($aDate){
         refactor to suit the project by Andrea Musso
 
 	== DOCUMENTATION ==
-
+        https://www.abeautifulsite.net/php-file-tree
         http://abeautifulsite.net/notebook.php?article=21
 
 */
+
+//Adhoc function create for the php file tree script to substitute the number of the month with the name of the directory folder
+function month($number){
+    switch ($number){
+        case '1':
+            return 'January';
+            break;
+        case '2':
+            return 'February';
+            break;
+        case '3':
+            return 'March';
+            break;
+        case '4':
+            return 'April';
+            break;
+        case '5':
+            return 'May';
+            break;
+            case '6':
+            return 'June';
+            break;
+        case '7':
+            return 'July';
+            break;
+        case '8':
+            return 'August';
+            break;
+        case '9':
+            return 'September';
+            break;
+        case '10':
+            return 'October';
+            break;
+        case '11':
+            return 'November';
+            break;
+        case '12':
+            return 'December';
+            break;
+        default:
+            return $number;
+            break;
+    }
+}
+
+//ad hoc function create to remove the file_id (ref the database) at the beginning of each payslip file
+function rmId($file){
+    $fileName='';
+    $subFile=explode('_',$file);
+    if (count($subFile)==2){
+        return $subFile[1];
+    }
+    foreach ($subFile as $key=>$value){
+        if($key==0){
+            continue;
+        }else{
+            $fileName.=$value.'_';
+        }
+    }
+    return rtrim($fileName,'_');
+}
+
 
 function php_file_tree($directory,$extensions = array()) {
     // Generates a valid XHTML list of all directories, sub-directories, and files in $directory
@@ -83,7 +146,7 @@ function php_file_tree_dir($directory, $extensions = array(), $first_call = true
     }
     $file = array_merge($dirs, $files);
 
-    // Filter unwanted extensions
+    // Filter unwanted extensions //We don't need to filter any extension, I will leave this function in case of further developement
     if( !empty($extensions) ) {
         foreach( array_keys($file) as $key ) {
             if( !is_dir("$directory/$file[$key]") ) {
@@ -100,15 +163,16 @@ function php_file_tree_dir($directory, $extensions = array(), $first_call = true
         foreach( $file as $this_file ) {
             if( $this_file != "." && $this_file != ".." ) {
                 if( is_dir("$directory/$this_file") ) {
+
                     // Directory
-                    $php_file_tree .= "<li class=\"pft-directory\"><a href=\"#\">" . htmlspecialchars($this_file) . "</a>";
+                    $php_file_tree .= "<li class=\"pft-directory\"><a href=\"#\">" . htmlspecialchars(month($this_file)) . "</a>";
                     $php_file_tree .= php_file_tree_dir("$directory/$this_file",$extensions, false);
                     $php_file_tree .= "</li>";
                 } else {
                     // File
                     // Get extension (prepend 'ext-' to prevent invalid classes from extensions that begin with numbers)
                     $ext = "ext-" . substr($this_file, strrpos($this_file, ".") + 1);
-                    $php_file_tree .= "<li class=\"pft-file " . strtolower($ext) . "\"><a href=\"qui link da cambiare\">" . htmlspecialchars($this_file) . "</a></li>";
+                    $php_file_tree .= "<li class=\"pft-file " . strtolower($ext) . "\"><a href=\"/$this_file\" download>" . htmlspecialchars(rmId($this_file)) . "</a></li>";
 				}
             }
         }
@@ -117,3 +181,4 @@ function php_file_tree_dir($directory, $extensions = array(), $first_call = true
     return $php_file_tree;
 
 }
+/*======================== end php file tree =========================*/
