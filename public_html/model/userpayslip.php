@@ -14,7 +14,6 @@ if ( !isset($_SESSION['user']) || !isset($_SESSION['uName'])){
     }else{
         $variables['noPayslip']='You don\'t have any payslip in the database yet';
     }
-//var_dump($_SESSION);
     echo $twig->render($template->getTemplate(),$variables);
 }
 

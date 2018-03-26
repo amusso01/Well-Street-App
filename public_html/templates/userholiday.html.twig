@@ -1,0 +1,16 @@
+{% extends 'base.html.twig'%}
+
+{% block header %}
+    <h1>Holiday</h1>
+{% endblock %}
+
+{% block nav %}
+    <div class="pure-menu custom-restricted-width">
+        <a class="pure-menu-heading" href="{{ self }}?page={{ homeLink }}"><img class="pure-img-responsive" id="logoImg" src="{{ FILE_ROOT }}/media/images/logo.png" alt="well street logo"></a>
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item pure-menu-selected"><a href="?page=userholiday" class="pure-menu-link"><i class="fas fa-plane"></i> Holiday</a></li>
+            <li class="pure-menu-item"><a href="?page=userpayslip" class="pure-menu-link"><i class="fas fa-dollar-sign"></i> Payslip</a></li>
+            <li class="pure-menu-item"><a href="?page=userrota" class="pure-menu-link"><i class="fas fa-clock"></i> Rota</a></li>
+        </ul>
+    </div>
+{% endblock %}
