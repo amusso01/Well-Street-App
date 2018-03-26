@@ -109,6 +109,7 @@ WHERE department='foh' AND U.users_id=E.user_id AND U.adminaccess='0'";
         }
     }
     $variables=array_merge($variables,$shift);
+    $variables['department']='foh';
     $result->free_result();
     echo $twig->render($template->getTemplate(),$variables);
 }

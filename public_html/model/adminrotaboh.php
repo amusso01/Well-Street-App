@@ -67,6 +67,7 @@ WHERE department='boh' AND U.users_id=E.user_id AND U.adminaccess='0'";
         }
     }
     $variables=array_merge($variables,$shift);
+    $variables['department']='boh';
     $result->free_result();
     echo $twig->render('adminrotafoh.html.twig',$variables);
 }

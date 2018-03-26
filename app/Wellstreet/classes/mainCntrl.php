@@ -9,7 +9,7 @@
 
 namespace Wellstreet\classes;
 
-class fileList
+class mainCntrl
 {
 
     protected $getPage; //page _GET from the url
