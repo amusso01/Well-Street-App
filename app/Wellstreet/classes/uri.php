@@ -1,7 +1,7 @@
 <?php
 /**
  * Class to catch the uri request in the index.php
- * Create an instance contains the uri parameter  eg. index.php/landing  the class capture the landing.php parameter
+ * Create an instance contains the uri parameter  eg. index.php?page=landing  the class capture the landing.php parameter
  */
 
 
