@@ -1,0 +1,184 @@
+@import "mixin";
+@import "variables";
+
+/*==== General setting ========*/
+body {
+  background-color: antiquewhite;
+  font-family: $base-font-family;
+  h1,h2,h3,h4,h5,h6{
+    font-family: $header-font-family;
+  }
+  p, ul, ol, pre, table, thead, tbody, tr, td, select, form, fieldset, label, button, input, a{
+    font-family: $base-font-family;
+  }
+}
+a {
+  text-decoration: none;
+  color:$electricBlue;
+  &:hover{
+    color: #1f8dd6;
+  }
+}
+
+/*===== login style =====*/
+
+#homeBody{
+  header{
+    height: 10%;
+    text-align: center;
+    text-transform: capitalize;
+    h1{
+      position: static;
+      font-family: $header-font-family;
+      font-weight: bold;
+      letter-spacing: 7.5px;
+    }
+  }
+  .pure-form{
+      margin: auto;
+      background-color: antiquewhite;
+      margin-top: 4%;
+      width: 50%;
+      padding: 10px;
+      text-align: center;
+      border: 1px solid $darkGrey;
+      border-radius: 4px;
+      box-shadow: 0 8px 6px -6px black;
+        legend{
+          width: 25%;
+          border-bottom: none;
+        }
+        input{
+          margin: auto;
+          width: 50%;
+        }
+        label{
+          margin-top: 17px;
+          margin-bottom: 8px;
+        }
+        input[type="password"]{
+          margin-bottom: 35px;
+        }
+        button{
+          margin-top: 10px;
+        }
+      @include breakpoint(laptop){
+        width: 45%;
+      }
+      @include breakpoint(tablet){
+        box-shadow: none;
+        border: none;
+        width: 100%;
+      }
+    }
+}
+
+/*==== navigation ====*/
+
+header{
+  background-color: $electricBlue;
+  height: 111.3px;
+   #title{
+    display: inline-block;
+    position: relative;
+    top: -20px;
+    color: white;
+    font-family: $header-font-family;
+    letter-spacing: 7.5px;
+    @include breakpoint(tablet){
+      font-size: 2.5em;
+    }
+     @include breakpoint(mobile){
+       font-size: 1.7em;
+     }
+  }
+  .pure-u-1-2{
+    color: $darkGrey;
+    p{
+      position: relative;
+      top:-15px;
+      float: left;
+      font-weight: bold;
+      @include breakpoint(mobile){
+        display: none;
+      }
+    }
+    a{
+      color: $darkGrey;
+      float: right;
+      font-size: .9em;
+      &:hover{
+        color: antiquewhite;
+      }
+      @include breakpoint(mobile){
+        margin-top: 3px;
+      }
+    }
+  }
+}
+
+/*==== nav bar ====*/
+
+#menu{
+  .pure-menu-heading{
+    height: 128.9px;
+    background-color: $electricBlue;
+    border-right: solid;
+    border-right-width: 1px;
+    border-right-color: $darkGrey;
+    #logoImg{
+      width: 85%;
+      position: relative;
+      top: 5%;
+      left: 3%;
+      right: 0%;
+      bottom: 0;
+      background-image: url("../media/images/logo.png");
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+  .pure-menu-list{
+    .pure-menu-selected{
+      color: antiquewhite;
+    }
+    .pure-menu-item{
+      .pure-menu-link{
+        @include transition(background-color .35s ease);
+        @include transition(color .35s ease);
+        &:hover{
+          color: antiquewhite;
+        }
+      }
+    }
+  }
+}
+
+/*==== main header ====*/
+#mainHeader{
+  height: 3%;
+  display: block;
+  position: relative;
+  background: none;
+  //border-bottom: 1px solid $darkGrey;
+  margin-bottom: 25px;
+  text-align: center;
+    h1{
+      font-size: 1.8em;
+      position: static;
+      color: $darkGrey;
+      @include breakpoint(mobile){
+        font-size: 1.4em;
+      }
+    }
+}
+
+/*==== footer nav =====*/
+
+#navFooter{
+  font-size: 0.7em;
+  position:fixed;
+  bottom:-3px;
+  left:7px;
+}
+
