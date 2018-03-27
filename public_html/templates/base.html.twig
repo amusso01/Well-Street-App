@@ -26,49 +26,69 @@
     </head>
     <body>
         <div id="layout">
+
             <!-- Menu toggle -->
             <a href="#menu" id="menuLink" class="menu-link">
                 <!-- Hamburger icon -->
                 <span></span>
             </a>
+
+            <!-- nav Menu -->
             <nav id="menu">
                 {% block nav %}
 
                 {% endblock %}
-            </nav>
+                <!-- nav footer -->
+                <footer id="navFooter">
+                    <p>&copy; Well Street Kitchen 2018</p>
+                </footer><!-- End nav footer -->
 
-            <main id="main">
-                <header class="header">
-                    <div class="pure-g">
-                        <div class="pure-u-1-2">
-                            <p>Welcome {{ user |capitalize}}</p>
-                        </div>
-                        <div class="pure-u-1-2">
-                            <a href="?page=logout">Log-out</a>
-                        </div>
+            </nav><!-- End nav -->
+
+            <!-- Site Header -->
+            <header class="header">
+                <h1 id="title">WELL STREET KITCHEN</h1>
+                <div class="pure-g">
+                    <div class="pure-u-1-2">
+                        <p>Welcome {{ user |capitalize}}</p>
                     </div>
-                    <h1>WELL STREET KITCHEN</h1>
-                    {% block header %}
+                    <div class="pure-u-1-2">
+                        <a href="?page=logout">Log-out</a>
+                    </div>
+                </div>
+                {% block header %}
 
+                {% endblock %}
+
+            </header><!-- End Site Header -->
+
+            <!-- main -->
+            <main id="main">
+                <!-- main Header -->
+                <header id="mainHeader">
+                    {% block mainHeader %}
 
                     {% endblock %}
-                </header>
+                </header><!-- End main Header -->
+
+                <!-- section Content -->
                 <section class="content">
                     {% block content %}
 
                     {% endblock %}
-                </section>
-            </main>
-            <footer>
-            {% block footer %}
+                </section><!-- End section content -->
 
-            {% endblock %}
-            </footer>
+            </main><!-- End main -->
+
         </div>
+
+        <!-- JS Script -->
         <script src="media/js/ui.js"></script>
         <script src="media/js/jquery-3.3.1.min.js"></script>
         {% block script %}
         {% endblock %}
-    </body>
+
+    </body><!-- End body -->
+
 </html>
 
