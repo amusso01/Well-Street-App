@@ -40,6 +40,9 @@
             {% if users == 0%}
                 <p>No employee with this surname</p>
             {% else%}
+            {% if deletionName is defined %}
+                <p>{{ deletionName |capitalize }} was permanently deleted from the system</p>
+            {% endif %}
             <table class="pure-table pure-table-horizontal">
                 <thead>
                 <tr>
