@@ -7,7 +7,9 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])){
 }elseif(isset($_POST['search'])){
     $surname=$mysqli->real_escape_string($_POST['search']);
     // use prepared statements!
-    $query ="SELECT * FROM employees WHERE surname='$surname'";
+    $query ="SELECT * FROM employees E 
+JOIN users U on E.user_id=U.users_id
+WHERE surname='$surname' AND U.adminaccess='0'";
     $result=$mysqli->query($query);
     if ($result==false){
         echo $mysqli->error;
