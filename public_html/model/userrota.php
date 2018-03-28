@@ -41,7 +41,12 @@ order by employee,date";
                 }
                 $flagThisWeek=true;
             } elseif ($row['week_number'] == $nextWeekNumber) {
-                $rotaNextWeek['weekAhead'][$row['employee']][] = array($row['date'] => $row['shift']);
+                if ($row['employee_id']==$_SESSION['employee_id']){
+                    $row['employee']=$_SESSION['employee_id'];
+                    $rotaNextWeek['weekAhead'][$row['employee']][] = array($row['date'] => $row['shift']);
+                }else{
+                    $rotaNextWeek['weekAhead'][$row['employee']][] = array($row['date'] => $row['shift']);
+                }
                 $flagNextWeek=true;
             }
         }
@@ -55,6 +60,5 @@ order by employee,date";
         die($mysqli->error);
     }
     $result->free_result();
-//var_dump($rotaThisWeek);
         echo $twig->render($template->getTemplate(),$variables);
 }

@@ -84,7 +84,7 @@ header{
     top: -20px;
     color: white;
     font-family: $header-font-family;
-    letter-spacing: 7.5px;
+    letter-spacing: 10px;
     @include breakpoint(tablet){
       font-size: 2.5em;
     }
