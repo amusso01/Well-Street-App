@@ -23,6 +23,10 @@
     </div>
 {% endblock %}
 
+{% block mainHeader %}
+    <h1>Communication</h1>
+{% endblock %}
+
 {% block content %}
     <form class="pure-form" action="{{ self }}?page=communication&mail=sent" method="post">
         <div class="pure-g">

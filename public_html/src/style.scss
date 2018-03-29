@@ -19,19 +19,31 @@ a {
     color: #1f8dd6;
   }
 }
+button{
+  a{
+    color: white;
+    &:hover{
+      color: white;
+    }
+  }
+}
 
 /*===== login style =====*/
 
 #homeBody{
-  header{
+  #homeHeader{
     height: 10%;
     text-align: center;
     text-transform: capitalize;
     h1{
-      position: static;
+      color: white;
       font-family: $header-font-family;
-      font-weight: bold;
-      letter-spacing: 7.5px;
+      font-size: 2.4em;
+      display: inline-block;
+      position: relative;
+      color: white;
+      font-family: $header-font-family;
+      letter-spacing: 12px;
     }
   }
   .pure-form{
@@ -164,7 +176,7 @@ header{
   margin-bottom: 25px;
   text-align: center;
     h1{
-      font-size: 1.8em;
+      font-size: 2.1em;
       position: static;
       color: $darkGrey;
       @include breakpoint(mobile){
