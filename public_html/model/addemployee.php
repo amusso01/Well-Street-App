@@ -6,16 +6,17 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])){
     logOut();
     header( 'refresh:4;url=index.php' );
 }elseif(isset($_POST['email'])){
+    $variables=include_once __DIR__.'/../templates/arrays/addemployee.php';
     $validate=new Wellstreet\classes\validation($_POST,$mysqli);
     $validate->sanitizeEntry();
     $validate->setUser();
     if($validate->valid){
         $newUser=$validate->buildUser();
         $_SESSION['userObj']=serialize($newUser);
-        header('location:?page=confirmdetails');
+        echo $twig->render('loader.html.twig',$variables);
+        header( 'refresh:1;url=index.php?page=confirmdetails' );
         die();
     }else{
-        $variables=include_once __DIR__.'/../templates/arrays/addemployee.php';
         $variables=array_merge($variables,$validate->errorArray);
         echo $twig->render($template->getTemplate(),$variables);
     }

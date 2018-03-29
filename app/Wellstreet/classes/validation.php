@@ -8,8 +8,8 @@
 
 namespace Wellstreet\classes;
 
-
-
+use Wellstreet\classes\apiCurl;
+use Wellstreet\classes\user;
 
 class validation
 {
@@ -198,7 +198,7 @@ class validation
     //We are using an external api to validate and retrieve the postcode and address
     public function validatePCode($pCode){
         $pCode = preg_replace('/\s+/', '', $pCode);
-        $response=new apiCurl('eK7S7hMgwECk4puypAK_6Q12122','https://api.getAddress.io/find/',$pCode);
+        $response=new apiCurl('GEpcw5A70k-fLjWoipm_Hg12113','https://api.getAddress.io/find/',$pCode);
         return $response->addressResult();
     }
 
@@ -311,7 +311,6 @@ class validation
         }
     }
 
-
     /*====== public funtion to call private one =======*/
 
     //this function prepare the inputed and correct data for the database storing them in the session
@@ -346,8 +345,6 @@ class validation
         }
         return new user($this->sessionArray,$credentials);
     }
-
-
 
 
     public function validateuser(){

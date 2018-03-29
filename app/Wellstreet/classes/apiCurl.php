@@ -27,11 +27,14 @@ class apiCurl
     public function addressResult()
     {
         $my_curl = curl_init();
-        curl_setopt($my_curl, CURLOPT_URL, $this->url . '' . $this->parameter);
+        curl_setopt($my_curl, CURLOPT_URL, $this->url . '' .urlencode( $this->parameter));
         curl_setopt($my_curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($my_curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
         curl_setopt($my_curl, CURLOPT_USERPWD, 'api-key:' . $this->key);
         $res = curl_exec($my_curl);
+        if ($res==false){
+            return curl_error($my_curl);
+        }
         if (!curl_errno($my_curl)) {
             switch ($http_code = curl_getinfo($my_curl, CURLINFO_HTTP_CODE)) {
                 case 200:  // OK
@@ -53,6 +56,8 @@ class apiCurl
                 default:
                     echo 'Unexpected HTTP code: ', $http_code, "\n";
             }
+        }else{
+            return curl_errno($my_curl);
         }
         curl_close($my_curl);
         return $res;

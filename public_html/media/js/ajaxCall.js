@@ -1,9 +1,7 @@
 $(function () {
     $('#findAddress').on('click',function () {
-        var $key='eK7S7hMgwECk4puypAK_6Q12122';
-        var $pCode=$('#pcode').val();
-        console.log($pCode);
-
+        var $key='GEpcw5A70k-fLjWoipm_Hg12113';
+        var $pCode=$('#pcode').val().trim();
         $.ajax({
             type: 'GET',
             url: 'https://api.getAddress.io/find/' + $pCode + '?api-key=' + $key,
