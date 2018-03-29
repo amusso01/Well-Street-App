@@ -160,7 +160,7 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])) {
                                 mkdir($updir);
                                 $upfilename=$updir.$upfilename;
                                 if (move_uploaded_file($tmpName, $upfilename)) {
-                                    $_SESSION['uploadStatus'] = 'File correctly upload';
+                                    $_SESSION['uploadStatus'] = 'File correctly uploaded';
                                     echo $twig->render('loader.html.twig',$variables);
                                     header("refresh:1;url=index.php?page=uploadpayslip&id=$employeeId");
                                 }else{

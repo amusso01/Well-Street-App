@@ -38,9 +38,10 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])) {
     $variables=array_merge($variables,$details);
 
     /*==== Deletion handle ====*/
+    $mainId=$details['user_id'];
     $employeeName=$details['name'].' '.$details['surname'];
     if (isset($_GET['delete'])){
-        $query="DELETE FROM `employees` WHERE `id_employee`=$id;";
+        $query="DELETE FROM users WHERE `users_id`=$mainId;";
         if ($mysqli->query($query)){
             echo $twig->render('loader.html.twig',$variables);
             header( "refresh:1;url=index.php?page=search&delete=$employeeName" );

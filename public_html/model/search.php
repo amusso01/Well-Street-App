@@ -33,7 +33,8 @@ WHERE surname='$surname' AND U.adminaccess='0'";
     $name=htmlentities($_GET['delete']);
     $variables=include_once __DIR__.'/../templates/arrays/search.php';
     $variables['deletionName']=$name;
-    echo $twig->render($template->getTemplate(),$variables);
+//    var_dump($variables);
+        echo $twig->render($template->getTemplate(),$variables);
 }else{
     $variables=include_once __DIR__.'/../templates/arrays/search.php';
     echo $twig->render($template->getTemplate(),$variables);
