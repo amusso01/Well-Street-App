@@ -56,8 +56,14 @@ button{
       border: 1px solid $darkGrey;
       border-radius: 4px;
       box-shadow: 0 8px 6px -6px black;
+        #homeImg{
+          position: relative;
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 25%;
+        }
         legend{
-          width: 25%;
           border-bottom: none;
         }
         input{
@@ -145,6 +151,7 @@ header{
       left: 3%;
       right: 0%;
       bottom: 0;
+      margin: auto;
       background-image: url("../media/images/logo.png");
       background-repeat: no-repeat;
       background-size: contain;
