@@ -185,7 +185,7 @@ function php_file_tree_dir($directory, $extensions = array(), $first_call = true
                     // Get extension (prepend 'ext-' to prevent invalid classes from extensions that begin with numbers)
                     $ext = "ext-" . substr($this_file, strrpos($this_file, ".") + 1);
                     $filePath=payslipPath($directory,$this_file);
-                    $php_file_tree .= "<li class=\"pft-file " . strtolower($ext) . "\"><a href=\"./../file_uploaded/payslip/$filePath\" download>" . htmlspecialchars(rmId($this_file)) . "</a></li>";
+                    $php_file_tree .= "<li class=\"pft-file " . strtolower($ext) . "\"><a href=\"./file_uploaded/payslip/$filePath\" download>" . htmlspecialchars(rmId($this_file)) . "</a></li>";
 				}
             }
         }

@@ -6,7 +6,7 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])) {
     header( 'refresh:4;url=index.php' );
 }else{
     $variables=include_once __DIR__ . '/../templates/arrays/uploadpayslip.php';
-    $updir=dirname(__FILE__).'/../../file_uploaded/payslip/';
+    $updir=dirname(__FILE__).'/../file_uploaded/payslip/';
     $employeeId=$_GET['id'];
     $variables['employeeId']=$employeeId;
     $year=getWeek(0,'Y');//using an already existing function we get an array of 7 value of the current year

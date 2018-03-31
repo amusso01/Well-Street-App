@@ -31,6 +31,7 @@ class validation
 //validate the login process
     protected function validateLogin(){
         $post=$this->postArray;
+        /*if form has been submitted with both credentials sanitize the entries*/
         if (!empty($post['pass']) && !empty($post['username'])){
             $uPass=$post['pass'];
             $uPass=mysqli_real_escape_string($this->mysqli,$uPass);
@@ -38,13 +39,16 @@ class validation
             $uName=trim($uName);
             $uName=strtolower($uName);
             $uName=mysqli_real_escape_string($this->mysqli,$uName);
+            /* === prepare statement ===  */
             $query="SELECT * FROM users WHERE username='$uName'";
             $result=mysqli_query($this->mysqli,$query);
             if($result==false){
                 die($this->mysqli->error);
             }else{
-                $user= $result->fetch_assoc();
+                $user= $result->fetch_assoc();//user associative array credentials
+                /* === check if password and username match === */
                 if(password_verify($uPass,$user['password']) && $uName==$user['username']){
+    /* === if has admin access priviledge store in session and redirect to the admin page === */
                     if ($user['adminaccess']==1){
                         $_SESSION = array();
                         $_SESSION['uName']=$uName;
@@ -60,6 +64,7 @@ class validation
                         header('location:?page=user');
                         die();
                     }
+                /*=== if username is correct redisplay it with a password error message === */
                 }elseif($uName==$user['username']){
                     $this->errorArray['passError']='Password is incorrect';
                     $this->errorArray['redisplayUser']=htmlentities($uName);
@@ -68,12 +73,9 @@ class validation
                 }
             }
         }else{
-
             $this->errorArray['passError']='Password is required';
         }
-
-
-        }
+    }
 
 
         //sanitize, trim and lower the user entry in th registration form

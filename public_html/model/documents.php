@@ -7,7 +7,7 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])) {
 }else{
     $infoFlag=false;
     $variables=include_once __DIR__ . '/../templates/arrays/documents.php';
-    $updir=dirname(__FILE__).'/../../file_uploaded/documents/';
+    $updir=dirname(__FILE__).'/../file_uploaded/documents/';
     $fileToDisplay=array();
       /*===============  Display file stored in the system  ============*/
       $storedFile=setAllFile($updir);

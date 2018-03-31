@@ -8,7 +8,7 @@ if ( !isset($_SESSION['user']) || !isset($_SESSION['uName'])){
     $variables=include_once __DIR__.'/../templates/arrays/userpayslip.php';
     $dir=$_SESSION['employee_id'];
     $monthDir='';
-    if (file_exists($updir=dirname(__FILE__).'/../../file_uploaded/payslip/'.$dir.'/')){
+    if (file_exists($updir=dirname(__FILE__).'/../file_uploaded/payslip/'.$dir.'/')){
         $html=php_file_tree($updir);
         $variables['html_tree']=$html;
     }else{
