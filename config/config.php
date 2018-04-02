@@ -25,9 +25,9 @@ date_default_timezone_set('Europe/London');
 
 
 // database settings
-$config['db_user'] = 'root';
+$config['db_user'] = '';
 $config['db_pass'] = '';
-$config['db_host'] = 'localhost';
-$config['db_name'] = 'wellstreetapp';
+$config['db_host'] = '';
+$config['db_name'] = '';
 
 
