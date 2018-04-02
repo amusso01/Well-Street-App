@@ -20,8 +20,8 @@
         </div>
         <div class="pure-u-1">
 
-            <form  class="pure-form" action="{{ self }}?page=adminrotafoh" name="weeklyRota" method="post">
-            <table class="pure-table">
+            <form  id="" action="{{ self }}?page=adminrotafoh" name="weeklyRota" method="post">
+            <table id="rotaTable">
                 <thead>
                     <tr>
                         <th>Employees</th>
@@ -37,7 +37,7 @@
                         {% for day in week  %}
                             <td>
 
-                                <select name="employee_id,{{ employee.id_employee }}-date,{{ day }}">
+                                <select class="rotaShift" name="employee_id,{{ employee.id_employee }}-date,{{ day }}">
                                     <option value="5">OFF</option>
                                     {% for time in shift %}
                                         {% if time.id_shift != 5 %}
@@ -57,4 +57,7 @@
             </form>
         </div>
     </div>
+{% endblock %}
+{% block script %}
+    <script src="media/js/jsStyle.js"></script>
 {% endblock %}

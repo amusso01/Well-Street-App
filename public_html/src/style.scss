@@ -102,12 +102,15 @@ header{
     top: -20px;
     color: white;
     font-family: $header-font-family;
-    letter-spacing: 10px;
+    letter-spacing: 7.8px;
     @include breakpoint(tablet){
       font-size: 2.5em;
     }
      @include breakpoint(mobile){
        font-size: 1.7em;
+     }
+     @include breakpoint(laptop){
+       letter-spacing: 15px;
      }
   }
   .pure-u-1-2{
@@ -174,6 +177,7 @@ header{
 }
 
 /*==== main header ====*/
+
 #mainHeader{
   height: 3%;
   display: block;
@@ -199,5 +203,40 @@ header{
   position:fixed;
   bottom:-3px;
   left:7px;
+  @include breakpoint(tablet){
+    position: absolute;
+    bottom:0px;
+  }
 }
 
+/*==== rota table ====*/
+
+#rotaTable{
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin-bottom: 30px;
+  tr:nth-of-type(odd) {
+    background: #eee;
+  }
+  th {
+    background: #333;
+    color: white;
+    font-weight: bold;
+  }
+  td, th {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    text-align: left;
+
+  }
+  select{
+    max-width: 90%;
+    border-radius: 3px;
+    padding: 4px;
+  }
+  @include breakpoint(tablet){
+    table-layout: auto;
+  }
+
+}
