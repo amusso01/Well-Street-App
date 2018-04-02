@@ -112,9 +112,9 @@ class validation
                     } else {
                         $this->sessionArray['uname'] = $uname;
                         $pass = $this->postArray['pass'];
-    /*=== password validation ===*/
+             /*=== password validation ===*/
                         if ($pass != '') {
-                            if (strlen($pass) < 8 || strlen($pass) > 15) {
+                            if (strlen($pass) < 8 ) {
                                 $this->errorArray['redisplayUser'] = $uname;
                                 $this->errorArray['passError'] = 'Maximum 15 minimum 8 characters for password';
                             } else {
@@ -227,14 +227,19 @@ class validation
         if($holiday==''){
             $this->errorArray['holidayError']='Select holiday allowed in one year';
             return false;
-        }elseif (preg_match("/[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)/",$holiday))
-
-            return true;
-        else{
+        }elseif (preg_match("/[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)/",$holiday)) {
+            if ($holiday < 0) {
+                $this->errorArray['holidayError'] = 'Holiday must be positive';
+                return false;
+            } else {
+                return true;
+            }
+        }else{
             $this->errorArray['holidayError']='Must be a number';
             return false;
         }
     }
+
 /*====== finish user credentials validation ======*/
 
 

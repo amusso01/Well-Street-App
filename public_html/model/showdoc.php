@@ -35,7 +35,7 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])) {
 
         /*=============  DELETE  ===============*/
         if (isset($_GET['file'])=='delete'){
-            $query="DELETE FROM `file_uploaded` WHERE `id_info`=$id";
+            $query="DELETE FROM file_uploaded WHERE id_info=$id";
             if ($mysqli->query($query)){
                 unlink(__DIR__ . '/../file_uploaded/documents/' .$downloadName);
                 echo $twig->render('loader.html.twig',$variables);
