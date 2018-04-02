@@ -14,7 +14,7 @@ LOCAL INSTALLATION
 #### Constraints
 
 * Make sure you have Composer install on your machine. Visit [this site](https://getcomposer.org/) to install Composer
-* You must have an AMP (Apache-MySql-PHP) environment install on your machine. My suggestion [MAMP ](https://www.mamp.info/en/) for mac and [WAMP](http://www.wampserver.com/en/)for windows or build your own.
+* You must have an AMP (Apache-MySql-PHP) environment install on your machine. My suggestion [MAMP ](https://www.mamp.info/en/) for mac and [WAMP](http://www.wampserver.com/en/) for windows or build your own.
 
 FOR FURTHER DEVELOPMENT 
 -----------------------
