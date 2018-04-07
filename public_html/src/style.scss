@@ -211,24 +211,23 @@ header{
 
 /*==== rota table ====*/
 
-#rotaTable{
+.rotaTable{
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
   margin-bottom: 30px;
-  tr:nth-of-type(odd) {
+  tr{
     background: #eee;
   }
   th {
-    background: #333;
+    background: $darkGrey;
     color: white;
     font-weight: bold;
   }
   td, th {
-    padding: 0.5rem;
+    padding: 0.4rem;
     border: 1px solid #ccc;
     text-align: left;
-
   }
   select{
     max-width: 90%;
