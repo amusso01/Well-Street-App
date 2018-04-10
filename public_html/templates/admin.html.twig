@@ -23,4 +23,60 @@
     </div>
 {% endblock %}
 
+{% block content %}
+    <div id="adminHome">
+        <!-- employee report -->
+        <div class="pure-u-1-3">
+            <article>
+                <header>
+                    <h1>Employee report</h1>
+                </header>
+                <section>
+                    <h4>You have {{ employee_number }} active employee.</h4>
+                    <p><strong>FOH active = {{ employee_foh }}</strong></p>
+                    <p><strong>BOH active = {{ employee_boh }}</strong></p>
+                </section>
+                <form class="pure-form" method='post' action="?page=search">
+                    <span>Surname</span>
+                    <input type="text" id="surname" name="search" class="pure-input-rounded">
+                    <button type="submit" class="pure-button"> <i class="fas fa-search"></i></button>
+                </form>
+            </article>
+        </div>
+        <!-- Holiday report -->
+        <div class="pure-u-1-3">
+            <article>
+                <header>
+                    <h1>Holiday report</h1>
+                </header>
+                <section>
+                    {% if holiday is defined %}
+                        <h4>You have {{ holiday|length }} holiday request:</h4>
+                        <ol>
+                            {% for event in holiday %}
+                                <li><strong>{{ event.name|capitalize}} {{ event.surname|capitalize }}</strong> from <strong>{{ event.start }}</strong> to <strong>{{ event.end }}</strong>
+                                    <a href="{{ self }}?page=holiday&id={{ event.holiday_id }}">SEE</a></li>
+                            {% endfor %}
+                        </ol>
+                    {% else %}
+                        <p><strong>You have 0 holiday request pending</strong></p>
+                    {% endif %}
+                </section>
+            </article>
+        </div>
+        <!-- rota report -->
+        <div class="pure-u-1-3">
+            <article>
+                <header>
+                    <h1>Rota report</h1>
+                </header>
+                <section>
+
+                </section>
+            </article>
+        </div>
+
+    </div>
+{% endblock %}
+
 

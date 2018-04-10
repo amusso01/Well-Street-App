@@ -28,6 +28,18 @@
 {% endblock %}
 
 {% block content %}
+    <div class="pure-g">
+        <div class="pure-u-1">
+            {% if hol_id_error is defined %}
+                <p class="error">{{ hol_id_error }}</p>
+            {% elseif request is defined  %}
+                <h3>Holiday request</h3>
+                <p><strong>{{ request.name|capitalize }} {{ request.surname|capitalize }}</strong> from <strong>{{ request.start }}</strong> to <strong>{{ request.end }}</strong></p>
+                <button><a href="">Approve</a></button>
+                <button><a href="">Refuse</a></button>
+            {% endif %}
+        </div>
+    </div>
     <div id="calendar"></div>
 
 {% endblock %}

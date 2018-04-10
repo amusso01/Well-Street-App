@@ -16,3 +16,49 @@
 {% block mainHeader %}
     <h1>Holiday</h1>
 {% endblock %}
+
+{% block content %}
+    <div id="calendar"></div>
+
+    <div class="pure-g">
+        <div class="pure-u-1">
+            <h3>Holiday Planner</h3>
+
+        </div>
+        <div class="pure-u-1-2">
+            <form action="{{ self  }}?page=userholiday" name="" method="post" class="pure-form pure-form-stacked">
+                <legend><p>Select holiday period you want to request</p></legend>
+                <div class="pure-control-group">
+                    <label for="start">Holiday first day</label>
+                    <input type="date" name="start" id="start">
+                </div>
+                <div class="pure-control-group">
+                    <label for="end">Holiday last day</label>
+                    <input type="date" name="end" id="end">
+                </div>
+                <button type="submit" name="submit" class="pure-button pure-button-primary">Send request</button><span class="error">{{ startError }}</span>
+            </form>
+            <p>* If selected date have 1 or more employee already on holiday, request unlikely to be accepted </p>
+        </div>
+        <div class="pure-u-1-2">
+            {% if holiday is defined %}
+                <p><strong>You have {{ holiday|length }} holiday request pending</strong></p>
+                <ol>
+                    {% for event in holiday %}
+                        <li>Start on <strong>{{ event.start }}</strong> end on <strong>{{ event.end }}</strong></li>
+                    {% endfor %}
+                </ol>
+            {% else %}
+                <p><strong>You have 0 holiday request pending</strong></p>
+            {% endif %}
+            {% if requested is defined %}
+                <p><strong class="error">{{ requested }}</strong></p>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="media/js/myCalendar.js"></script>
+{% endblock %}

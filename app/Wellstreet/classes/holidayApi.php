@@ -49,5 +49,6 @@ class holidayApi
         }else{
             die($this->mysqli->error());
         }
+        $result->free_result();
     }
 }

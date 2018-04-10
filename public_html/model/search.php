@@ -28,6 +28,7 @@ WHERE surname='$surname' AND U.adminaccess='0'";
 
         echo $twig->render($template->getTemplate(),$variables);
     }
+    $result->free();
 
 }elseif(isset($_GET['delete'])){
     $name=htmlentities($_GET['delete']);

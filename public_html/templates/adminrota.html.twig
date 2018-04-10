@@ -30,7 +30,7 @@
                 <tbody>
                 {% for name,date in currentWeek %}
                 <tr>
-                    <td>{{ name}}</td>
+                    <td>{{ name }}</td>
                     {% for array in date %}
                         {% for shift in array %}
                             {%  if shift == '' %}
@@ -60,7 +60,7 @@
                 <tbody>
                 {% for name,date in weekAhead %}
                     <tr>
-                        <td>{{ name}}</td>
+                        <td>{{ name }}</td>
                         {% for array in date %}
                             {% for shift in array %}
                                 {%  if shift == '' %}
