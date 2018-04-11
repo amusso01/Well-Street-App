@@ -19,7 +19,8 @@ WHERE H.holiday_approved=\"N\"";
         if ($result->num_rows !== 0){
             while ($row=$result->fetch_assoc()){
                 $events['start']=htmlentities($row['holiday_start']);
-                $events['end']=htmlentities($row['holiday_end']);
+                $end=removeDay($row['holiday_end']);
+                $events['end']=htmlentities($end);
                 $events['holiday_id']=htmlentities($row['holiday_id']);
                 $events['name']=htmlentities($row['name']);
                 $events['surname']=htmlentities($row['surname']);

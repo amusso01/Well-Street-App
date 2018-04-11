@@ -35,8 +35,10 @@
             {% elseif request is defined  %}
                 <h3>Holiday request</h3>
                 <p><strong>{{ request.name|capitalize }} {{ request.surname|capitalize }}</strong> from <strong>{{ request.start }}</strong> to <strong>{{ request.end }}</strong></p>
-                <button><a href="">Approve</a></button>
-                <button><a href="">Refuse</a></button>
+                <button><a href="{{ self }}?page=holiday&id={{ request.holiday_id }}&approve=y">Approve</a></button>
+                <button><a href="{{ self }}?page=holiday&id={{ request.holiday_id }}&approve=n">Refuse</a></button>
+            {% elseif update_request is defined %}
+                <p class="error">{{ update_request }}</p>
             {% endif %}
         </div>
     </div>

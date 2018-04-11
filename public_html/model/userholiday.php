@@ -16,11 +16,15 @@ if ( !isset($_SESSION['user']) || !isset($_SESSION['uName'])) {
         }else{
             $start=new DateTime($_POST['start']);
             $end=new DateTime($_POST['end']);
+            $now=new DateTime();
             if ($start->getTimestamp()>$end->getTimestamp()){
                 $variables['startError']='The ending date cannot be before the starting date period';
+            }elseif($start->getTimestamp()<$now->getTimestamp()){
+                $variables['startError']='Cannot book day in the past';
             }else{
+                $end=addDay($_POST['end']);//add a day to the end date, this is to fix a problem with full calendar plugin. The day must be removed before redisplay it to the user
                 $startDate=$mysqli->real_escape_string($_POST['start']);
-                $endDate=$mysqli->real_escape_string($_POST['end']);
+                $endDate=$mysqli->real_escape_string($end);
                 $query="INSERT INTO holiday_request (holiday_start, holiday_end, employee_id, holiday_approved) VALUES ( '$startDate','$endDate', $empId, 'N');";
                 if ($mysqli->query($query)){
                     $_POST=array();
@@ -45,7 +49,8 @@ WHERE H.holiday_approved=\"N\" and H.employee_id=$empId";
         if ($result->num_rows !== 0){
            while ($row=$result->fetch_assoc()){
                $events['start']=htmlentities($row['holiday_start']);
-               $events['end']=htmlentities($row['holiday_end']);
+               $end=removeDay($row['holiday_end']);
+               $events['end']=htmlentities($end);
                array_push($empHoliday,$events);
            }
         }

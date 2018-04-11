@@ -18,6 +18,9 @@
 {% endblock %}
 
 {% block content %}
+    {% if requested is defined %}
+        <h3>{{ requested }}</h3>
+    {% endif %}
     <div id="calendar"></div>
 
     <div class="pure-g">
@@ -50,9 +53,6 @@
                 </ol>
             {% else %}
                 <p><strong>You have 0 holiday request pending</strong></p>
-            {% endif %}
-            {% if requested is defined %}
-                <p><strong class="error">{{ requested }}</strong></p>
             {% endif %}
         </div>
     </div>

@@ -196,3 +196,14 @@ function php_file_tree_dir($directory, $extensions = array(), $first_call = true
 }
 /*======================== end php file tree =========================*/
 
+function addDay($date){
+    $newDate=new DateTime($date);
+    $newDate= $newDate->modify('+1 day');
+    return $newDate->format('Y-m-d');
+}
+
+function removeDay($date){
+    $newDate=new DateTime($date);
+    $newDate= $newDate->modify('-1 day');
+    return $newDate->format('Y-m-d');
+}

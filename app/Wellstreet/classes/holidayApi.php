@@ -37,7 +37,7 @@ class holidayApi
         $events = array();
         if ($result){
             while ($row=$result->fetch_assoc()){
-                    $json['id']=$row['employee_id'];
+                    $json['id']=$row['holiday_id'];
                     $json['title']=$row['name'].' '.$row['surname'];
                     $json['start']=$row['holiday_start'];
                     $json['end']=$row['holiday_end'];
