@@ -21,7 +21,7 @@ function logOut(){
 //Weekly calendar return the selected week in format D d M Y default example: Mon 26 Feb 2018. Pass another format to change it
 //if you would like to change the format output modify the $day date variable
 //parameter how many week from the actual week do you want to add
-//for exemple pass 1 return next week, -1 last week
+//for example pass 1 return next week, -1 last week
 //default = 0 return current week
 function getWeek($accumulator=1,$format='D d M Y'){
     $lapse=7*24*60*60;

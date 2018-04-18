@@ -8,7 +8,6 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])){
     header( 'refresh:4;url=index.php' );
 }else{
     $variables=include_once __DIR__.'/../templates/arrays/admin.php';
-
     /*==== holiday report ====*/
     $events=array();
     $empHoliday=array();
@@ -60,6 +59,67 @@ WHERE  U.adminaccess='0'";
 
     /*==== rota report =====*/
 
+    $nextWeek=getWeek(1,'Y-m-d');
+    $nextMonday=$nextWeek[0];
+
+    $query="SELECT S.date,E.department FROM schedule_rota S
+JOIN employees E on S.employee_id=E.id_employee
+WHERE date = '$nextMonday';";
+
+    $foh=false;
+    $boh=false;
+//    control if there is boh and foh rota upload for next week in the db
+    if ($result=$mysqli->query($query)){
+        while ($row=$result->fetch_assoc()){
+            if ($row['department']=='boh'){
+                $boh=true;
+            }elseif ($row['department']=='foh'){
+                $foh=true;
+            }
+        }
+    }else{
+        die($mysqli->error);
+    }
+    $result->free();
+
+    $variables['bohUpload']=$boh;
+    $variables['fohUpload']=$foh;
+
+//    control if there is boh and foh rota upload for this week in the db
+
+    $thisWeek=getWeek(0,'Y-m-d');
+    $thisMonday=$thisWeek[0];
+    $foh=false;
+    $boh=false;
+
+    $query="SELECT S.date,E.department FROM schedule_rota S
+JOIN employees E on S.employee_id=E.id_employee
+WHERE date = '$thisMonday';";
+
+    if ($result=$mysqli->query($query)){
+        while ($row=$result->fetch_assoc()){
+            if ($row['department']=='boh'){
+                $boh=true;
+            }elseif ($row['department']=='foh'){
+                $foh=true;
+            }
+        }
+    }else{
+        die($mysqli->error);
+    }
+    $result->free();
+
+    if ($boh==true && $foh==true){
+        $variables['thisWeek']=true;
+    }else{
+        if ($foh==false && $boh==false){
+            $variables['thisWeekToUpload']='both';
+        }elseif($foh==false){
+            $variables['thisWeekToUpload']='foh';
+        }else{
+            $variables['thisWeekToUpload']='boh';
+        }
+    }
 
     echo $twig->render($template->getTemplate(),$variables);
 }

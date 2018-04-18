@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block nav %}
+    {% include 'mainNavRota.html..twig' %}
+{% endblock %}
+
+{% block mainHeader %}
+    <h1>UPLOAD THIS WEEK ROTA</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="pure-g">
+        <div class="pure-u-1-2">
+            <h3>Enter the rota for the {{ department }} department</h3>
+        </div>
+        <div class="pure-u-1">
+
+            <form  id="" action="{{ self }}?page=rotaupload" name="weeklyRota" method="post">
+                <table class="rotaTable">
+                    <thead>
+                    <tr>
+                        <th>Employees</th>
+                        {% for day in week %}
+                            <th>{{ day }}</th>
+                        {% endfor %}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for employee in users %}
+                        <tr>
+                            <td>{{ employee.name}} {{ employee.surname }}</td>
+                            {% for day in week  %}
+                                <td>
+
+                                    <select class="rotaShift" name="employee_id,{{ employee.id_employee }}-date,{{ day }}">
+                                        <option value="5">OFF</option>
+                                        {% for time in shift %}
+                                            {% if time.id_shift != 5 %}
+                                                <option value="{{ time.id_shift}}">{{ time.start_time }} to {{ time.finish_time }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                            {% endfor %}
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <button type="submit" name="submit" class="pure-button pure-button-primary"><i class="fas fa-arrow-circle-up"></i> Upload rota</button>
+
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="media/js/jsStyle.js"></script>
+{% endblock %}

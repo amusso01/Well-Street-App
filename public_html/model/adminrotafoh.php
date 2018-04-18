@@ -8,7 +8,7 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])){
 }elseif(isset($_POST['submit'])){
     $variables=include_once __DIR__.'/../templates/arrays/nopriviledge.php';
     $rota=array();
-    /*this loop create an bidimensional array of [emplyee_id][date]=>shift_id*/
+    /*this loop create a bidimensional array of [employee_id][date]=>shift_id*/
     foreach ($_POST as $key =>$value){
         if ($key == 'submit'){
             continue;
@@ -82,7 +82,7 @@ JOIN users U
 WHERE department='foh' AND U.users_id=E.user_id AND U.adminaccess='0'";
     $result=$mysqli->query($query);
     if ($result==false){
-        echo $mysqli->error;
+        die($mysqli->error);
     }else {
         $users = array();
         while ($row = $result->fetch_assoc()) {
@@ -97,7 +97,7 @@ WHERE department='foh' AND U.users_id=E.user_id AND U.adminaccess='0'";
     $query ="SELECT * FROM shift";
     $result=$mysqli->query($query);
     if ($result==false){
-        echo $mysqli->error;
+        die($mysqli->error);
     }else {
         $shift=array();
         while($row=$result->fetch_assoc()){
