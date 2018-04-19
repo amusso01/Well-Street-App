@@ -16,11 +16,13 @@ $(function() {
           $('#fullCalModal').modal();
 
 
+          $("#revButton").unbind('click');
           $("#revButton").click(function () {
+              var eventId = event._id
               $.ajax({
                   type:"POST",
                   url:'jsonService/holidayApi.php',
-                  data: "&id=" + event.id,
+                  data: "&id=" + eventId,
                   success: function () {
                           $('#calendar').fullCalendar('removeEvents', event._id);
                           $('#calendar').fullCalendar('addEventSource', JSON.parse(json_events));
