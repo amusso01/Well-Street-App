@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block head %}
+    <link rel="stylesheet" href="media/css/bootstrap.css">
+{% endblock %}
+
 {% block nav %}
     <div class="pure-menu custom-restricted-width">
         <a class="pure-menu-heading" href="{{ self }}?page={{ homeLink }}"><img class="pure-img-responsive" id="logoImg" src="{{ FILE_ROOT }}media/images/logo.png" alt="well street logo"></a>
@@ -42,10 +46,38 @@
             {% endif %}
         </div>
     </div>
+
+    <!-- =====  Modal pop up for delete event ===== -->
+    <div id="fullCalModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span>  <span class="sr-only">close</span>
+
+                    </button>
+                    <h4 id="modalTitle" class="modal-title"></h4>
+
+                </div>
+                <div id="modalBody" class="modal-body">
+                    <p id="modalStart"></p>
+                    <p id="modalEnd"></p>
+
+                    <p><strong>Are you sure remove the already booked holiday?</strong></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="revButton" data-dismiss="modal">Remove</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div id="calendar"></div>
 
 {% endblock %}
 
 {% block script %}
     <script src="media/js/myCalendar.js"></script>
+    <script src="media/js/bootstrap.min.js"></script>
 {% endblock %}

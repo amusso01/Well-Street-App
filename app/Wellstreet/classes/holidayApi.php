@@ -23,6 +23,11 @@ class holidayApi
         $this->query=$query;
     }
 
+    /* === setter ===*/
+
+    public function setQuery($newQuery){
+        $this->query=$newQuery;
+    }
 
     //function to generate random dark color
     protected function randomColor($num){
@@ -31,6 +36,7 @@ class holidayApi
             return $hex;
     }
 
+    /*=== return json encoded array of events in db ===*/
     public function allEvents(){
         $result=$this->mysqli->query($this->query);
         $json=[];
@@ -51,4 +57,16 @@ class holidayApi
         }
         $result->free_result();
     }
+
+
+    /*=== delete an event from db ===*/
+    public function deleteEvent($id){
+        if ($result=$this->mysqli->query($this->query)){
+            return json_encode(array('status'=>'success'));
+        }else{
+            return json_encode(array('status'=>'failed'));
+        }
+    }
+
 }
+
