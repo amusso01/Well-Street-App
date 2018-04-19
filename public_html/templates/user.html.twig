@@ -17,7 +17,23 @@
                     <h1>Holiday request</h1>
                 </header>
                 <section>
-
+                    {% if holiday is defined %}
+                        <h3>You have {{ holiday|length }} holiday planned:</h3>
+                        <h5>Approved</h5>
+                        {% for event in holiday %}
+                            {% if event.approved=='Y' %}
+                                <p>From <strong>{{ event.start }}</strong> to <strong>{{event.end }}</strong></p>
+                            {% endif %}
+                        {% endfor %}
+                        <h5>Not approved yet</h5>
+                        {% for event in holiday %}
+                            {% if event.approved =='N' %}
+                                <p class="reminder">From <strong>{{ event.start }}</strong> to <strong>{{ event.end }}</strong></p>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <p>You don't have any planned holiday at the moment <a href="{{ self }}?page=userholiday#holidayPlanner">BOOK NOW</a></p>
+                    {% endif %}
                 </section>
             </article>
         </div>
@@ -28,9 +44,19 @@
                     <h1>Rota update</h1>
                 </header>
                 <section>
+                    {% if thisWeekRota == true %}
+                        <p>The rota for this week has been uploaded <a href="{{ self }}?page=userrota">SEE</a></p>
+                    {% else %}
+                        <p>Your weekly rota is not upload yet</p>
+                    {% endif %}
 
+                    {% if nextWeekRota == true %}
+                        <p>The rota for next week has been uploaded <a href="{{ self }}?page=userrota">SEE</a></p>
+                    {% else %}
+                        <p>Your rota for next week is not upload yet</p>
+                    {% endif %}
                 </section>
-            <article>
+            </article>
 
         </div>
 

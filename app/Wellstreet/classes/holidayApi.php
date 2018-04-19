@@ -68,5 +68,15 @@ class holidayApi
         }
     }
 
+
+    /*=== return result of any query ===*/
+    public function result(){
+        if ($result=$this->mysqli->query($this->query)){
+            return $result;
+        }else{
+            die($this->mysqli->error);
+        }
+    }
+
 }
 

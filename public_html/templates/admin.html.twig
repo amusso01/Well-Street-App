@@ -88,11 +88,11 @@
                 </section>
                 <section>
                     {% if bohUpload == false %}
-                        <p class="reminder">Upload the rota for next week <a href="{{ self }}?page=adminrotaboh">Back of House</a> department</>
+                        <p class="reminder">Upload the rota for next week <a href="{{ self }}?page=adminrotaboh">Back of House</a> department</p>
                     {% endif %}
 
                     {% if fohUpload== false%}
-                        <p class="reminder">Upload the rota for next week <a href="{{ self }}?page=adminrotafoh">Front of House</a> department</>
+                        <p class="reminder">Upload the rota for next week <a href="{{ self }}?page=adminrotafoh">Front of House</a> department</p>
                     {% endif %}
 
                     {% if (bohUpload == true) and (fohUpload == true) %}
