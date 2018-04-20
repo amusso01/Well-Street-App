@@ -20,7 +20,7 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])){
             $shift['shift']=$shiftArray;
         }
     }
-    $variables=include_once __DIR__.'/../templates/arrays/nopriviledge.php';
+    $variables=include_once __DIR__.'/../templates/arrays/adminrotanewshift.php';
     $start=$_POST['startTime'];
     $finish=$_POST['finishTime'];
     if ($start==''&& $finish==''){
@@ -61,7 +61,7 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])){
             $shift['shift']=$shiftArray;
         }
     }
-    $variables=include_once __DIR__.'/../templates/arrays/nopriviledge.php';
+    $variables=include_once __DIR__.'/../templates/arrays/adminrotanewshift.php';
     $variables=array_merge($variables,$shift);
     echo $twig->render($template->getTemplate(),$variables);
 }

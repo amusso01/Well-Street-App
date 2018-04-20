@@ -65,6 +65,7 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['uName'])) {
                                 $variables['uploadStatus']='File correctly upload';
                                 echo $twig->render('loader.html.twig',$variables);
                                 header( 'refresh:1;url=index.php?page=documents' );
+                                die();
                             }else{
                                 $variables['uploadStatus']='Failed to upload please try again';
                             }
