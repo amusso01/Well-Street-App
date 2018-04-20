@@ -26,99 +26,102 @@
     <h1>Add Employees</h1>
 {% endblock %}
 {% block content %}
-    <div class="pure-g">
-        <div class="pure-u-1">
-            <h3>Add details for new employee</h3>
-            <p>Username: {{ newUName }}</p>
-        </div>
-        <div class="pure-u-1">
-            <form class="pure-form pure-form-aligned" method="post" action="?page=addemployee">
-                <fieldset>
-                    <legend>Details</legend>
-                    <div class="pure-control-group">
-                        <label for="name">Name*</label>
-                        <input id="name" type="text" name="name" value="{{ redisplayName }}" ><span class="error">{{ nameError }}</span>
-                    </div>
-                    <div class="pure-control-group">
-                        <label for="sname">Surname*</label>
-                        <input id="sname" type="text" name="sname" value="{{ redisplaySName }}"><span class="error">{{ snameError }}</span>
-                    </div>
-                    <div class="pure-control-group">
-                        <label for="gender">Gender*</label>
-                        {% if gender==m %}
-                            <input id="gender" type="radio" name="gender" value="m" checked="checked"><span>Male</span>
-                            <input id="gender" type="radio" name="gender" value="f"><span>Female</span><span class="error">{{ choiceError }}</span>
-                        {% elseif gender ==f %}
-                            <input id="gender" type="radio" name="gender" value="m"><span>Male</span>
-                            <input id="gender" type="radio" name="gender" value="f" checked="checked"><span>Female</span><span class="error">{{ choiceError }}</span>
-                        {% else %}
-                            <input id="gender" type="radio" name="gender" value="m" checked="checked"><span>Male</span>
-                            <input id="gender" type="radio" name="gender" value="f"><span>Female</span><span class="error">{{ choiceError }}</span>
-                        {% endif %}
-                    </div>
-                    <div class="pure-control-group">
-                        <label for="email">Email Address*</label>
-                        <input id="email" type="email" name="email" value="{{ redisplayEmail }}" > <span class="error">{{ emailError }}</span>
-                    </div>
-                    <div class="pure-control-group">
-                        <label for="start">Starting date*</label>
-                        <input id="start" type="date" name="sdate" value="{{ redisplaySDate }}"><span class="error">{{ sdateError }}</span>
-                    </div>
-                    <div class="pure-control-group">
-                        <label for="nin">National Insurane Number*</label>
-                        <input id="nin" type="text"  name="nin" value="{{ redisplayNin }}"> <span class="error">{{ ninError }}</span>
-                    </div>
-                    <div class="pure-control-group">
-                        <label for="dob">Date of birthday*</label>
-                        <input id="dob" type="date" name="dob" value="{{ redisplayDob }}"><span class="error">{{ dobError }}</span>
-                    </div>
-                    <div class="pure-control-group">
-                        <label for="pcode">Post-code*</label>
-                        <input id="pcode" type="text" name="pcode" value="{{ redisplayPCode }}"><a id="findAddress" href="#">Find address</a><span class="error">{{ pCodeError }}</span>
-                    </div>
-                    <div class="pure-control-group">
-                        <label for="address">Address</label>
-                        <select for="address" name="address" id="address">
-                            <option value=" "></option>
-                        </select>
-                    </div>
-                    <div class="pure-control-group">
-                        <label for="phone">Phone number*</label>
-                        <input id="phone" type="tel" name="phone" value="{{ redisplayPhone }}"><span class="error">{{ phoneError }}</span>
-                    </div>
-                    <div class="pure-control-group">
-                        <label for="payrate">Pay rate*</label>
-                        <input id="payrate" type="text" name="payrate" value="{{ redisplayPay }}"><span class="error">{{ payError }}</span>
-                    </div>
-                    <div class="pure-control-group">
-                        <label for="department">Department*</label>
-                        {% if department==foh %}
-                            <input id="department" type="radio" name="department" value="foh" checked="checked"><span>Front of house</span>
-                            <input id="department" type="radio" name="department" value="boh"><span>Back of house</span><span class="error">{{ choiceError }}</span>
-                        {% elseif department ==boh %}
-                            <input id="department" type="radio" name="department" value="foh"><span>Front of house</span>
-                            <input id="department" type="radio" name="department" value="boh" checked="checked"><span>Back of house</span><span class="error">{{ choiceError }}</span>
-                        {% else %}
-                            <input id="department" type="radio" name="department" value="foh" checked="checked"><span>Front of house</span>
-                            <input id="department" type="radio" name="department" value="boh"><span>Back of house</span><span class="error">{{ choiceError }}</span>
-                        {% endif %}
+    <div id="adminAddEmployee2">
+        <div class="pure-g">
+            <div class="pure-u-1">
+                <h3>Add details for new employee</h3>
+                <p>Username: {{ newUName }}</p>
+            </div>
+            <div class="pure-u-1">
+                <form class="pure-form pure-form-aligned" method="post" action="?page=addemployee">
+                    <fieldset>
+                        <legend>Details</legend>
+                        <div class="pure-control-group">
+                            <label for="name">Name*</label>
+                            <input id="name" type="text" name="name" value="{{ redisplayName }}" ><span class="error">{{ nameError }}</span>
+                        </div>
+                        <div class="pure-control-group">
+                            <label for="sname">Surname*</label>
+                            <input id="sname" type="text" name="sname" value="{{ redisplaySName }}"><span class="error">{{ snameError }}</span>
+                        </div>
+                        <div class="pure-control-group">
+                            <label for="gender">Gender*</label>
+                            {% if gender==m %}
+                                <input id="gender" type="radio" name="gender" value="m" checked="checked"><span>Male</span>
+                                <input id="gender" type="radio" name="gender" value="f"><span>Female</span><span class="error">{{ choiceError }}</span>
+                            {% elseif gender ==f %}
+                                <input id="gender" type="radio" name="gender" value="m"><span>Male</span>
+                                <input id="gender" type="radio" name="gender" value="f" checked="checked"><span>Female</span><span class="error">{{ choiceError }}</span>
+                            {% else %}
+                                <input id="gender" type="radio" name="gender" value="m" checked="checked"><span>Male</span>
+                                <input id="gender" type="radio" name="gender" value="f"><span>Female</span><span class="error">{{ choiceError }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="pure-control-group">
+                            <label for="email">Email Address*</label>
+                            <input id="email" type="email" name="email" value="{{ redisplayEmail }}" > <span class="error">{{ emailError }}</span>
+                        </div>
+                        <div class="pure-control-group">
+                            <label for="start">Starting date*</label>
+                            <input id="start" type="date" name="sdate" value="{{ redisplaySDate }}"><span class="error">{{ sdateError }}</span>
+                        </div>
+                        <div class="pure-control-group">
+                            <label for="nin">National Insurane Number*</label>
+                            <input id="nin" type="text"  name="nin" value="{{ redisplayNin }}"> <span class="error">{{ ninError }}</span>
+                        </div>
+                        <div class="pure-control-group">
+                            <label for="dob">Date of birthday*</label>
+                            <input id="dob" type="date" name="dob" value="{{ redisplayDob }}"><span class="error">{{ dobError }}</span>
+                        </div>
+                        <div class="pure-control-group">
+                            <label for="pcode">Post-code*</label>
+                            <input id="pcode" type="text" name="pcode" value="{{ redisplayPCode }}"><a id="findAddress" href="#">Find address</a><span class="error">{{ pCodeError }}</span>
+                        </div>
+                        <div class="pure-control-group">
+                            <label for="address">Address</label>
+                            <select for="address" name="address" id="address">
+                                <option value=" "></option>
+                            </select>
+                        </div>
+                        <div class="pure-control-group">
+                            <label for="phone">Phone number*</label>
+                            <input id="phone" type="tel" name="phone" value="{{ redisplayPhone }}"><span class="error">{{ phoneError }}</span>
+                        </div>
+                        <div class="pure-control-group">
+                            <label for="payrate">Pay rate*</label>
+                            <input id="payrate" type="text" name="payrate" value="{{ redisplayPay }}"><span class="error">{{ payError }}</span>
+                        </div>
+                        <div class="pure-control-group">
+                            <label for="department">Department*</label>
+                            {% if department==foh %}
+                                <input id="department" type="radio" name="department" value="foh" checked="checked"><span>Front of house</span>
+                                <input id="department" type="radio" name="department" value="boh"><span>Back of house</span><span class="error">{{ choiceError }}</span>
+                            {% elseif department ==boh %}
+                                <input id="department" type="radio" name="department" value="foh"><span>Front of house</span>
+                                <input id="department" type="radio" name="department" value="boh" checked="checked"><span>Back of house</span><span class="error">{{ choiceError }}</span>
+                            {% else %}
+                                <input id="department" type="radio" name="department" value="foh" checked="checked"><span>Front of house</span>
+                                <input id="department" type="radio" name="department" value="boh"><span>Back of house</span><span class="error">{{ choiceError }}</span>
+                            {% endif %}
 
-                    </div>
-                    <div class="pure-control-group">
-                        <label for="position">Position</label>
-                        <input id="position" type="text" name="position" >
-                    </div>
-                    <div class="pure-control-group">
-                        <label for="holiday">Holiday allowed in one year*</label>
-                        <input id="holiday" type="number" name="holiday" value="{{ redisplayHoliday }}" ><span class="error">{{ holidayError }}</span>
-                    </div>
-                    <div class="pure-controls">
-                        <button type="submit" class="pure-button pure-button-primary">Add details</button>
-                    </div>
-                </fieldset>
-            </form>
+                        </div>
+                        <div class="pure-control-group">
+                            <label for="position">Position</label>
+                            <input id="position" type="text" name="position" >
+                        </div>
+                        <div class="pure-control-group">
+                            <label for="holiday">Holiday allowed in one year*</label>
+                            <input id="holiday" type="number" name="holiday" value="{{ redisplayHoliday }}" ><span class="error">{{ holidayError }}</span>
+                        </div>
+                        <div class="pure-controls">
+                            <button type="submit" class="pure-button pure-button-primary">Add details</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
         </div>
     </div>
+
 {% endblock %}
 {% block script %}
     <script src="media/js/ajaxCall.js"></script>

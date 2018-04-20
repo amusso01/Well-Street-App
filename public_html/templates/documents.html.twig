@@ -28,41 +28,44 @@
 {% endblock %}
 
 {% block content %}
-    <div class="pure-g">
-        <div class="pure-u-1">
-            <h3>File in the system</h3>
-            <ul>
-                {% for key,value in fileArray %}
+    <div id="adminDocument">
+        <div class="pure-g">
+            <div class="pure-u-1">
+                <h3>Upload a file</h3>
+                <form class="pure-form" name="upload" enctype="multipart/form-data" action="{{ self }}?page=documents" method="post">
+                    <fieldset>
+                        <div class="pure-control-group">
+                            <label for="userfile">Upload this file:</label>
+                            <input name="userfile" type="file">
+                            <span class="error">{{ error }}</span>
+                        </div>
 
-                    <li><i class="fas fa-file"></i> <a href="{{ self }}?page=showdoc&id={{ key }}">{{ value }}</a></li>
-
-                {% endfor %}
-            </ul>
-
-        </div>
-        <div class="pure-u-1-2">
-            <h3>Upload a file</h3>
-            <form class="pure-form" name="upload" enctype="multipart/form-data" action="{{ self }}?page=documents" method="post">
-                <fieldset>
-
-                        <label for="userfile">Upload this file:</label>
-                        <input name="userfile" type="file">
-                    <span class="error">{{ error }}</span>
-
-                    <div class="pure-control-group">
-                        <label for="info">Add file info: </label>
-                        <textarea name="info" class="pure-input-1-2" maxlength="150"></textarea>
-                        <span class="error">{{ infoError }}</span>
-                    </div>
+                        <div class="pure-control-group">
+                            <label for="info">Add file info: </label>
+                            <textarea name="info" class="pure-input-1-2" maxlength="150"></textarea>
+                            <span class="error">{{ infoError }}</span>
+                        </div>
 
 
-                    <div class="pure-controls">
-                        <button type="submit" class="pure-button pure-button-primary"><i class="fas fa-arrow-circle-up"></i> Upload</button>
-                        <span><strong>{{ uploadStatus }}</strong></span>
-                        <span class="error">{{ fileError }}</span>
-                    </div>
-                </fieldset>
-            </form>
+                        <div class="pure-controls">
+                            <button type="submit" class="pure-button pure-button-primary"><i class="fas fa-arrow-circle-up"></i> Upload</button>
+                            <span><strong>{{ uploadStatus }}</strong></span>
+                            <span class="error">{{ fileError }}</span>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="pure-u-1">
+                <h3>File in the system</h3>
+                <ul>
+                    {% for key,value in fileArray %}
+
+                        <li><i class="fas fa-file"></i> <a href="{{ self }}?page=showdoc&id={{ key }}">{{ value }}</a></li>
+
+                    {% endfor %}
+                </ul>
+
+            </div>
         </div>
     </div>
 {% endblock %}

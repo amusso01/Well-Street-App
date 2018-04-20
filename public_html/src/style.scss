@@ -28,6 +28,7 @@ button{
   }
 }
 
+
 /*===== login style =====*/
 
 #homeBody{
@@ -182,8 +183,8 @@ header{
   height: 3%;
   display: block;
   position: relative;
+  z-index: -1;
   background: none;
-  //border-bottom: 1px solid $darkGrey;
   margin-bottom: 25px;
   text-align: center;
     h1{
@@ -248,6 +249,7 @@ header{
   grid-template-rows: 1fr 1fr;
   .col-1, .col-1-2 {
     border: 1px solid black;
+    border-radius: 3px;
     margin: 10px;
     padding: 10px;
     header{
@@ -257,16 +259,120 @@ header{
       height: 100%;
       color: $darkGrey;
     }
+    ol{
+      padding: 0px;
+      list-style-type: none;
+      font-size: 14px;
+      a{
+        float: right;
+        font-weight: bold;
+        @include breakpoint(tablet){
+          position: relative;
+        }
+      }
+    }
+    .buttonstyle{
+      font-weight: bold;
+    }
   }
   .col-1{
     grid-column:1 / span 2;
+
   }
   .reminder{
     font-weight: bold;
     color: #dd4444;
   }
+  .pure-form{
+    .pure-input-rounded{
+      padding-right: 0px;
+      @include breakpoint(mobile){
+        padding-right: 5em;
+      }
+    }
+    span{
+      font-size: 14px;
+    }
+  }
 
   @include breakpoint(mobile){
     display: block;
+  }
+}
+
+/*==== employee page ====*/
+#adminEmployee{
+  .pure-checkbox{
+    font-size: .9em;
+    position: relative;
+    left: 65px;
+  }
+  #addEmployee{
+    #admin{
+      position: relative;
+      left: 68px;
+    }
+    button{
+      position: relative;
+      left: 133px;
+    }
+  }
+}
+
+/*==== document ====*/
+
+#adminDocument{
+  .pure-u-1{
+    margin-bottom: 40px;
+  }
+  .pure-control-group{
+    margin-bottom: 20px;
+  }
+  input{
+    margin: 5px;
+  }
+}
+
+/*==== payslip ====*/
+
+#uploadPayslip{
+  #button{
+    margin-top: 30px;
+    position: relative;
+  }
+  #year{
+    position: relative;
+    right: 100px;
+  }
+  #yearLabel{
+    position: relative;
+    right: 100px;
+  }
+  .pure-control-group{
+    margin-bottom: 20px;
+  }
+  h3{
+    text-align: center;
+    margin-top: 30px;
+  }
+}
+
+/*=== admin employee ===*/
+
+#adminAddEmployee2{
+  #findAddress{
+    font-weight: bold;
+    margin-left: 5px;
+  }
+}
+
+/*=== admin holiday ===*/
+
+#adminHoliday{
+  margin-bottom: 30px;
+  button{
+    a{
+      color: $darkGrey;
+    }
   }
 }

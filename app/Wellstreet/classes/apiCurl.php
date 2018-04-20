@@ -22,7 +22,6 @@ class apiCurl
         $this->parameter = $parameter;
     }
 
-
 //    call the web service and return an understandable response
     public function addressResult()
     {

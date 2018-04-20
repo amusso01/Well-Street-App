@@ -32,7 +32,7 @@
                             {% endif %}
                         {% endfor %}
                     {% else %}
-                        <p>You don't have any planned holiday at the moment <a href="{{ self }}?page=userholiday#holidayPlanner">BOOK NOW</a></p>
+                        <p>You don't have any planned holiday at the moment <a class="buttonstyle" href="{{ self }}?page=userholiday#holidayPlanner">BOOK NOW</a></p>
                     {% endif %}
                 </section>
             </article>
@@ -45,20 +45,18 @@
                 </header>
                 <section>
                     {% if thisWeekRota == true %}
-                        <p>The rota for this week has been uploaded <a href="{{ self }}?page=userrota">SEE</a></p>
+                        <p>The rota for this week has been uploaded <a class="buttonstyle" href="{{ self }}?page=userrota">SEE</a></p>
                     {% else %}
                         <p>Your weekly rota is not upload yet</p>
                     {% endif %}
 
                     {% if nextWeekRota == true %}
-                        <p>The rota for next week has been uploaded <a href="{{ self }}?page=userrota">SEE</a></p>
+                        <p>The rota for next week has been uploaded <a class="buttonstyle" href="{{ self }}?page=userrota">SEE</a></p>
                     {% else %}
                         <p>Your rota for next week is not upload yet</p>
                     {% endif %}
                 </section>
             </article>
-
         </div>
-
     </div>
 {% endblock %}

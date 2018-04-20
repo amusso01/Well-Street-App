@@ -32,20 +32,25 @@
 {% endblock %}
 
 {% block content %}
-    <div class="pure-g">
-        <div class="pure-u-1">
-            {% if hol_id_error is defined %}
-                <p class="error">{{ hol_id_error }}</p>
-            {% elseif request is defined  %}
-                <h3>Holiday request</h3>
-                <p><strong>{{ request.name|capitalize }} {{ request.surname|capitalize }}</strong> from <strong>{{ request.start }}</strong> to <strong>{{ request.end }}</strong></p>
-                <button><a href="{{ self }}?page=holiday&id={{ request.holiday_id }}&approve=y">Approve</a></button>
-                <button><a href="{{ self }}?page=holiday&id={{ request.holiday_id }}&approve=n">Refuse</a></button>
-            {% elseif update_request is defined %}
-                <p class="error">{{ update_request }}</p>
-            {% endif %}
+    <div id="adminHoliday">
+        <div class="pure-g">
+            <div class="pure-u-1">
+                {% if hol_id_error is defined %}
+                    <p class="error">{{ hol_id_error }}</p>
+                {% elseif request is defined  %}
+                    <h3>Holiday request</h3>
+                    <p><strong>{{ request.name|capitalize }} {{ request.surname|capitalize }}</strong> from <strong>{{ request.start }}</strong> to <strong>{{ request.end }}</strong></p>
+                    <button><a href="{{ self }}?page=holiday&id={{ request.holiday_id }}&approve=y">Approve</a></button>
+                    <button><a href="{{ self }}?page=holiday&id={{ request.holiday_id }}&approve=n">Refuse</a></button>
+                {% elseif update_request is defined %}
+                    <p>{{ update_request }}</p>
+                {% endif %}
+            </div>
         </div>
     </div>
+
+
+
 
     <!-- =====  Modal pop up for delete event ===== -->
     <div id="fullCalModal" class="modal fade">

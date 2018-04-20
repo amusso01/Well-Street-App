@@ -32,7 +32,7 @@
                     <h1>Employee report</h1>
                 </header>
                 <section>
-                    <h4>You have {{ employee_number }} active employee.</h4>
+                    <p>You have {{ employee_number }} active employee:</p>
                     <p><strong>FOH active = {{ employee_foh }}</strong></p>
                     <p><strong>BOH active = {{ employee_boh }}</strong></p>
                 </section>
@@ -51,7 +51,7 @@
                 </header>
                 <section>
                     {% if holiday is defined %}
-                        <h4>You have {{ holiday|length }} holiday request:</h4>
+                        <p>You have {{ holiday|length }} holiday request:</p>
                         <ol>
                             {% for event in holiday %}
                                 <li><strong>{{ event.name|capitalize}} {{ event.surname|capitalize }}</strong> from <strong>{{ event.start }}</strong> to <strong>{{ event.end }}</strong>
@@ -72,7 +72,7 @@
                 </header>
                 <section id="rotaWeek">
                     {% if thisWeek == true %}
-                        <p>THIS WEEK ROTA IS CORRECTLY UPLOADED <a href="{{ self }}?page=adminrota">SEE</a></p>
+                        <p>THIS WEEK ROTA IS CORRECTLY UPLOADED <a class="buttonstyle" href="{{ self }}?page=adminrota">SEE</a></p>
                     {% else %}
                         {% if thisWeekToUpload == "both" %}
                             <p class="reminder">YOU STILL HAVE TO UPLOAD ROTA FOR BOTH DEPARTMENT FOR THE CURRENT WEEK
@@ -96,7 +96,7 @@
                     {% endif %}
 
                     {% if (bohUpload == true) and (fohUpload == true) %}
-                        <p>NEXT WEEK ROTA IS CORRECTLY UPLOADED <a href="{{ self }}?page=adminrota">SEE</a></p>
+                        <p>NEXT WEEK ROTA IS CORRECTLY UPLOADED <a class="buttonstyle" href="{{ self }}?page=adminrota">SEE</a></p>
                     {% endif %}
                 </section>
             </article>
