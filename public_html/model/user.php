@@ -41,21 +41,23 @@ WHERE username='$username'";
 JOIN employees E ON H.employee_id=E.id_employee
 WHERE employee_id=$employeeId";
     if ($result=$mysqli->query($query)){
-        while ($row=$result->fetch_assoc()){
-            $holiday['start']=htmlentities($row['holiday_start']);
-            $holiday['end']=htmlentities($row['holiday_end']);
-            foreach ($row as $key=>$value){
-                if ($key=='holiday_approved'){
-                    if ($value=='Y'){
-                        $holiday['approved']=htmlentities($value);
-                    }else{
-                        $holiday['approved']=htmlentities($value);
+        if ($result->num_rows!==0){
+            while ($row=$result->fetch_assoc()){
+                $holiday['start']=htmlentities($row['holiday_start']);
+                $holiday['end']=htmlentities($row['holiday_end']);
+                foreach ($row as $key=>$value){
+                    if ($key=='holiday_approved'){
+                        if ($value=='Y'){
+                            $holiday['approved']=htmlentities($value);
+                        }else{
+                            $holiday['approved']=htmlentities($value);
+                        }
                     }
                 }
+                array_push($holidayArray,$holiday);
             }
-            array_push($holidayArray,$holiday);
+            $variables['holiday']=$holidayArray;
         }
-        $variables['holiday']=$holidayArray;
     }else{
         die($mysqli->error);
     }
@@ -96,7 +98,6 @@ WHERE date = '$thisMonday' AND S.employee_id=$employeeId";
         die($mysqli->error);
     }
     $result->free();
-
 
 
     echo $twig->render($template->getTemplate(),$variables);

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: eandr
- * Date: 07/04/2018
- * Time: 15:16
- */
 
 namespace Wellstreet\classes;
 
@@ -29,7 +23,7 @@ class holidayApi
         $this->query=$newQuery;
     }
 
-    //function to generate random dark color
+    //function to generate random color
     protected function randomColor($num){
             $hash = md5($num);
             $hex=substr($hash, 1, 2).substr($hash, 2, 2).substr($hash, 4, 2);

@@ -159,8 +159,30 @@ header{
       background-image: url("../media/images/logo.png");
       background-repeat: no-repeat;
       background-size: contain;
+      &:hover{
+        opacity: 1;
+        -webkit-animation: flash 1s;
+        animation: flash 1s;
+      }
     }
   }
+  @-webkit-keyframes flash {
+    0% {
+      opacity: .4;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes flash {
+    0% {
+      opacity: .4;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
   .pure-menu-list{
     .pure-menu-selected{
       color: antiquewhite;
@@ -343,10 +365,29 @@ header{
   #year{
     position: relative;
     right: 100px;
+    @include breakpoint(mobile){
+      position:absolute;
+      margin-top: 15px;
+    }
   }
   #yearLabel{
     position: relative;
     right: 100px;
+   z-index: -1;
+    @include breakpoint(mobile){
+        display: none;
+    }
+  }
+  #month{
+    z-index: 1;
+    @include breakpoint(mobile){
+      margin-top: 15px;
+    }
+  }
+  #monthLabel{
+    @include breakpoint(mobile){
+      display: none;
+    }
   }
   .pure-control-group{
     margin-bottom: 20px;
@@ -382,9 +423,32 @@ header{
 #userrota{
   button{
     margin-top: 20px;
-    
     a{
       color: $darkGrey;
     }
+  }
+}
+
+/*=== admin rota ====*/
+
+#adminrota{
+  button{
+    margin-top: 20px;
+
+    a{
+      color: $darkGrey;
+    }
+  }
+}
+
+/*=== user holiday ===*/
+
+#userHoliday{
+  .asterics{
+    font-size: .85em;
+    color: $darkGrey;
+  }
+  button{
+    margin-top: 10px;
   }
 }

@@ -1,64 +1,39 @@
 {% extends 'base.html.twig' %}
 
+{% block head %}
+    <link rel="stylesheet" href="media/css/print.css" type="text/css" media="print" />
+{% endblock %}
+
 {% block nav %}
     {% include 'mainNavRota.html.twig' %}
 {% endblock %}
 
 {% block mainHeader %}
-    <h1>Rota</h1>
+    <h1 class="no-print">Rota</h1>
 {% endblock %}
 
 {% block content %}
-    <div class="pure-g">
-        <div class="pure-u-1">
-            <h1>{{ RotaUpload }}</h1>
-        </div>
-        <hr>
-        <br>
-        <div class="pure-u-1">
-            <h2>Current Week</h2>
-            <table class="rotaTable">
-                <thead>
-                <tr>
-                    <th>Employee</th>
-                    {% for day in thisWeek %}
-                        <th>{{ day }}</th>
-                    {% endfor %}
-                </tr>
-                </thead>
-
-                <tbody>
-                {% for name,date in currentWeek %}
-                <tr>
-                    <td>{{ name }}</td>
-                    {% for array in date %}
-                        {% for shift in array %}
-                            {%  if shift == '' %}
-                                <td>OFF</td>
-                            {%  else %}
-                                <td>{{ shift }}</td>
-                            {% endif %}
+    <div id="adminrota">
+        <div class="pure-g">
+            <div class="pure-u-1">
+                <h1>{{ RotaUpload }}</h1>
+            </div>
+            <hr>
+            <br>
+            <div class="pure-u-1">
+                <h2>Current Week</h2>
+                <table class="rotaTable">
+                    <thead>
+                    <tr>
+                        <th>Employee</th>
+                        {% for day in thisWeek %}
+                            <th>{{ day }}</th>
                         {% endfor %}
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <div class="pure-u-1">
-            <h2>Next Week</h2>
-            <table class="rotaTable">
-                <thead>
-                <tr>
-                    <th>Employee</th>
-                    {% for day in nextWeek %}
-                        <th>{{ day }}</th>
-                    {% endfor %}
-                </tr>
-                </thead>
+                    </tr>
+                    </thead>
 
-                <tbody>
-                {% for name,date in weekAhead %}
+                    <tbody>
+                    {% for name,date in currentWeek %}
                     <tr>
                         <td>{{ name }}</td>
                         {% for array in date %}
@@ -71,9 +46,41 @@
                             {% endfor %}
                         {% endfor %}
                     </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="pure-u-1">
+                <h2>Next Week</h2>
+                <table class="rotaTable">
+                    <thead>
+                    <tr>
+                        <th>Employee</th>
+                        {% for day in nextWeek %}
+                            <th>{{ day }}</th>
+                        {% endfor %}
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for name,date in weekAhead %}
+                        <tr>
+                            <td>{{ name }}</td>
+                            {% for array in date %}
+                                {% for shift in array %}
+                                    {%  if shift == '' %}
+                                        <td>OFF</td>
+                                    {%  else %}
+                                        <td>{{ shift }}</td>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <button class="no-print"><a href="javascript:window.print()"><i class="fas fa-print"></i> PRINT</a></button>
         </div>
     </div>
 {% endblock %}
