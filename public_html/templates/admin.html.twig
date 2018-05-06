@@ -55,7 +55,7 @@
                         <ol>
                             {% for event in holiday %}
                                 <li><strong>{{ event.name|capitalize}} {{ event.surname|capitalize }}</strong> from <strong>{{ event.start }}</strong> to <strong>{{ event.end }}</strong>
-                                    <a href="{{ self }}?page=holiday&id={{ event.holiday_id }}">SEE</a></li>
+                                    <a class="buttonstyle" href="{{ self }}?page=holiday&id={{ event.holiday_id }}">SEE</a></li>
                             {% endfor %}
                         </ol>
                     {% else %}

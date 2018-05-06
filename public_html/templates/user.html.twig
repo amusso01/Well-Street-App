@@ -22,7 +22,7 @@
                         <h5>Approved</h5>
                         {% for event in holiday %}
                             {% if event.approved=='Y' %}
-                                <p>From <strong>{{ event.start }}</strong> to <strong>{{event.end }}</strong></p>
+                                <p>From <strong>{{ event.start }}</strong> to <strong>{{event.end }}</strong> <a class="buttonstyle" href="{{ self }}?page=holiday}">SEE</a></p>
                             {% endif %}
                         {% endfor %}
                         <h5>Not approved yet</h5>
